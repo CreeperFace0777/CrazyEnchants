@@ -1,0 +1,6 @@
+-----!!!-----
+IMPORTANT
+
+In each enchants constructor make sure to set the name, max level, rarity etc using super method.
+
+Each enchant needs a listener for it's ability/skill/effect
