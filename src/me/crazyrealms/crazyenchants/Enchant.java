@@ -4,6 +4,7 @@ package me.crazyrealms.crazyenchants;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Each of the plugins enchants will extend this class
-public abstract class Enchant {
+public abstract class Enchant implements Listener {
 
     //A list of all enchants in the game (mainly for looping through)
     public static List<Enchant> enchants = new ArrayList<Enchant>();
@@ -60,4 +61,5 @@ public abstract class Enchant {
     public String getDescription() {
         return description;
     }
+
 }
