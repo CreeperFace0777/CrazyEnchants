@@ -17,104 +17,104 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 ## Enchants
 
 #### Speed [Boots Only]
- **Rarity: **Legendary
- **Max Level: **3
- **Description: ** *Permanent speed effect, each level increases speed level by 1*
+**Rarity:** Legendary
+**Max Level:** 3
+**Description:** *Permanent speed effect, each level increases speed level by 1*
 
 #### Jump [Boots Only]
-**Rarity: **Rare
-**Max Level: **3
-**Description: ***Permanent Jump Boost effect, each level increases jump boost level by 1*
+**Rarity:** Rare
+**Max Level:** 3
+**Description:** *Permanent Jump Boost effect, each level increases jump boost level by 1*
 
 #### Combo [Weapons Only]
-**Rarity: **Legendary
-**Max Level: **6
-**Description: ** *The more you attack without being hit, the more damage you do*
+**Rarity:** Legendary
+**Max Level:** 6
+**Description:** *The more you attack without being hit, the more damage you do*
 
 #### Savior [Helmet Only]
-**Rarity: **Legendary
-**Max Level: **4
-**Description: ** *Chance to heal when low on health*
-**Stackable: **Yes
+**Rarity:** Legendary
+**Max Level:** 4
+**Description:** *Chance to heal when low on health*
+**Stackable:** Yes
 
 #### Blast [Pick and Shovel]
-**Rarity: **Epic
-**Max Level: **3
-**Description: ** *When mining, you will destroy a in a radius of blocks increasing by each level*
+**Rarity:** Epic
+**Max Level:** 3
+**Description:** *When mining, you will destroy a in a radius of blocks increasing by each level*
 
 #### Enderman [Boots Only]
-**Rarity: **Epic
-**Max Level: **3
-**Description: ** *Chance to teleport behind your enemy*
+**Rarity:** Epic
+**Max Level:** 3
+**Description:** *Chance to teleport behind your enemy*
 
 #### Haste [Tools Only]
-**Rarity: **Simple
-**Max Level: **3
-**Description: ** *Gives the haste effect to the player*
+**Rarity:** Simple
+**Max Level:** 3
+**Description:** *Gives the haste effect to the player*
 
 #### XP [Sword Only]
-**Rarity: **Legendary
-**Max Level: **4
-**Description: ** *Gives the player more experience point when killing a mob*
+**Rarity:** Legendary
+**Max Level:** 4
+**Description:** *Gives the player more experience point when killing a mob*
 
 #### Toxic [Bows Only]
-**Rarity: **Rare
-**Max Level: **3
-**Description: ** *Chance to give the poison effect for a few seconds after being hit with the arrow*
+**Rarity:** Rare
+**Max Level:** 3
+**Description:** *Chance to give the poison effect for a few seconds after being hit with the arrow*
 
 #### Featherweight [Swords Only]
-**Rarity: **Common
-**Max Level: **3
-**Description: ** *Chance to give a burst of haste*
+**Rarity:** Common
+**Max Level:** 3
+**Description:** *Chance to give a burst of haste*
 
 #### OverWorld [Boots Only]
-**Rarity: **Common
-**Max Level: **3
-**Description: ** *Chance to give the regeneration effect when at low health*
+**Rarity:** Common
+**Max Level:** 3
+**Description:** *Chance to give the regeneration effect when at low health*
 
 #### LuckyOre [Pickaxe Only]
-**Rarity: **Rare
-**Max Level: **5
-**Description: ** *Chance to instantly smelt an ore mined*
+**Rarity:** Rare
+**Max Level:** 5
+**Description:** *Chance to instantly smelt an ore mined*
 
 #### Humble [Armor Only]
-**Rarity: **Rare
-**Max Level: **5
-**Description: ** *Chance to spawn a zombie horde that will target the player you hit*
+**Rarity:** Rare
+**Max Level:** 5
+**Description:** *Chance to spawn a zombie horde that will target the player you hit*
 
 #### Lightning [Bow Only]
-**Rarity: **Simple
-**Max Level: **3
-**Description: ** *Chance to smite (strike lightening upon) your enemy*
+**Rarity:** Simple
+**Max Level:** 3
+**Description:** *Chance to smite (strike lightening upon) your enemy*
 
 #### Confusion [Sword and Axe]
-**Rarity: **Simple
-**Max Level: **3
-**Description: ** *Chance to give your enemy the nausea effect*
+**Rarity:** Simple
+**Max Level:** 3
+**Description:** *Chance to give your enemy the nausea effect*
 
 #### Escape [Boots Only]
-**Rarity: **Rare
-**Max Level: **3
-**Description: ** *Chance to be flown into the air once on low health (no fall damage taken).*
+**Rarity:** Rare
+**Max Level:** 3
+**Description:** *Chance to be flown into the air once on low health (no fall damage taken).*
 
 #### LifeSaver [Swords Only]
-**Rarity: **Legendary
-**Max Level: **5
-**Description: ** *Chance to give your enemies health to you (doesn't apply if the enemies health is lower than yours)*
+**Rarity:** Legendary
+**Max Level:** 5
+**Description:** *Chance to give your enemies health to you (doesn't apply if the enemies health is lower than yours)*
 
 #### Sturdy [Armor Only]
-**Rarity: **Epic
-**Max Level: **3
-**Description: ** *Gives your armor more durability*
+**Rarity:** Epic
+**Max Level:** 3
+**Description:** *Gives your armor more durability*
 
 #### Regenaration [Armor Only]
-**Rarity: **Legendary
-**Max Level: **3
-**Description: ** *Chance yo heal you instantly*
-**Stackable: **Yes
+**Rarity:** Legendary
+**Max Level:** 3
+**Description:** *Chance yo heal you instantly*
+**Stackable:** Yes
 
 #### Stregth [Armor Only]
-**Rarity: **Legendary
-**Max Level: **3
-**Description: ** *Chance to do more damage*
-**Stackable: **Yes
+**Rarity:** Legendary
+**Max Level:** 3
+**Description:** *Chance to do more damage*
+**Stackable:** Yes
