@@ -1,5 +1,5 @@
 *****
-##TODO List
+## TODO List
 
 
 1. Add enchants with random chances (Success Rate - A random % chance. If the player wins the odds, the enchant is added to the item. Destroy Rate - If the player doesn't win the odds there is a chance the item could be destroyed) (Can be found in enchants section of README.md)
@@ -13,10 +13,10 @@
 9. The player can only add a certain number of enchants to an item. This number is determined by the permission they have.
 
 
-####More information can be found on the trello card: https://trello.com/c/CLRx6oZF/7-crazyenchants
+#### More information can be found on the trello card: https://trello.com/c/CLRx6oZF/7-crazyenchants
 
 ****
 
-##Code Snippets
+## Code Snippets
 
 * Loop through each enchant on the player, and if the enchant procs (the player wins the odds) then the ability is added. This would make it so that the enchants are stackable. This would be disabled for some items so if the enchant is found, if it's found again on another armor piece, it is skipped (continued).
