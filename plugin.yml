@@ -3,3 +3,8 @@ author: ["CreeperFace0777", "ipodtouch0218"]
 name: CrazyEnchantments
 version: 1.0
 website: https://github.com/CreeperFace0777/CrazyEnchants
+
+commands:
+  enchanter:
+    usage: /<command>
+    description: Opens a GUI where the player can by custom enchant books using in-game exp
