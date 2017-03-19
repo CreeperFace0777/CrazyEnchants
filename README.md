@@ -162,71 +162,70 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Stackable:** Yes
 
-###Regain [Axe Only]
+### Regain [Axe Only]
 **Rarity:** Simple
 
 **Max Level:** 4
 
 **Description:** *Chance to gain hunger when you attack a player*
 
-###Guards [Armor Only]
+### Guards [Armor Only]
 **Rarity:** Epic
 
 **Max Level:** 10
 
 **Description:** *Chance to spawn multiple iron golema that will attack enemies around the player*
 
-###AntiLava [Armor Only]
+### AntiLava [Armor Only]
 **Rarity:** Epic
 
 **Max Level:** 1
 
 **Description:** *Gives the player permenatant fire ressistance effect*
 
-
-###Poison [Sword Only]
+### Poison [Sword Only]
 **Rarity:** Rare
 
 **Max Level:** 3
 
 **Description:** *Chance to give the enemy the poison effect*
 
-###Freeze [Sword Only]
+### Freeze [Sword Only]
 **Rarity:** Rare
 
 **Max Level:** 3
 
 **Description:** *Chance to make the enemy not able to move (frozen)*
 
-###Lucky [Armor Only]
+### Lucky [Armor Only]
 **Rarity:** Epic
 
 **Max Level:** 10
 
 **Description:** *Increases the chance of any enchant activating on that armor piece*
 
-###Glow [Helmet Only]
+### Glow [Helmet Only]
 **Rarity:** Simple
 
 **Max Level:** 1
 
 **Description:** *Gives the player permenant night vision effect*
 
-###Blind [Swords and Bow]
+### Blind [Swords and Bow]
 **Rarity:** Rare
 
 **Max Level:** 3
 
 **Description:** *Chance to give the enemy blindness*
 
-###Explode [Bow Only]
+### Explode [Bow Only]
 **Rarity:** Rare
 
 **Max Level:** 2
 
 **Description:** *Chance to launch an exploding arrow*
 
-###Leader [Helmet Only]
+### Leader [Helmet Only]
 **Rarity:** Epic
 
 **Max Level:** 5
@@ -240,7 +239,7 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Description:** *Chance to remove all your debuffs**
 
-###Nightmare [Armor Only]
+### Nightmare [Armor Only]
 **Rarity:** Epic
 
 **Max Level:** 5
