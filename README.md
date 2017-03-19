@@ -232,7 +232,7 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Description:** *The more ASkyblock members you have around you, the more damage you do*
 
-###Blessed [Axe Only]
+### Blessed [Axe Only]
 **Rarity:** Epic
 
 **Max Level:** 3
