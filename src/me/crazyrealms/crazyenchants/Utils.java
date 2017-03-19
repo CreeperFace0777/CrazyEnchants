@@ -7,45 +7,65 @@ import java.util.List;
 
 public class Utils {
     //Converts the given integer into a roman numeral
-    public static String intToRomanNumeral(int i)  {
+    public static String intToRomanNumeral(int i) {
         //Max level is 10 so I may as well do it manually. If you (ipodtouch0218) can find a better way then go ahead :)
         switch (i) {
             case 1:
                 return "I";
             case 2:
                 return "II";
-                
             case 3:
                 return "III";
-                
             case 4:
                 return "IV";
-                
             case 5:
                 return "V";
-                
             case 6:
                 return "VI";
-                
             case 7:
                 return "VII";
-                
             case 8:
                 return "VIII";
-                
             case 9:
                 return "IX";
-                
             case 10:
                 return "X";
         }
         return Integer.toString(i);
     }
 
+    //Converts the given roman numeral to a integer
+    public static int romanNumeralToInt(String i) {
+        //Max level is 10 so I may as well do it manually. If you (ipodtouch0218) can find a better way then go ahead :)
+        switch (i.toUpperCase()) {
+            case "I":
+                return 1;
+            case "II":
+                return 2;
+            case "III":
+                return 3;
+            case "IV":
+                return 4;
+            case "V":
+                return 5;
+            case "VI":
+                return 6;
+            case "VII":
+                return 7;
+            case "VIII":
+                return 8;
+            case "IX":
+                return 9;
+            case "X":
+                return 10;
+        }
+        return 0;
+    }
+
     //Splits the string into multiple lines so the lore isn't too long (Retains ChatColor)
     public static List<String> loreLineFormat(String string, ChatColor color) {
         List<String> newString = new ArrayList<>();
-        while(string.length() >= 30) {
+        while (string.length() >= 30) {
             newString.add(color + string.substring(0, 30));
             string = string.substring(30, string.length());
         }

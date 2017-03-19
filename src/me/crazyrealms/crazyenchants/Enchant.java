@@ -3,13 +3,16 @@ package me.crazyrealms.crazyenchants;
 
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //Each of the plugins enchants will extend this class
 public abstract class Enchant {
@@ -23,7 +26,7 @@ public abstract class Enchant {
     private ItemSet[] itemSet; //Items the enchant can be applied to
     private String description; //What the enchant does
     private double chance; //The chance of the enchant activating
-    private boolean isActive; //True if the enchant is always activ
+    private boolean isActive; //True if the enchant is always active
 
 
     //Runs for new enchants
@@ -47,20 +50,9 @@ public abstract class Enchant {
 
     //Events (These will not be registered in the enchant, but will be registered in a separate class. When the enchant is found, the method will be called from here):
 
-    //If player is hit with a projectile/melee combat.
-    public void playerHitEvent (EntityDamageByEntityEvent e) {}
-
-    //If the enchant is a tool enchant (block broken)
-    public void playerBreakBlockEvent(BlockBreakEvent e) {}
-
-    //If the enchant is always active
-    public void alwaysActive(Player player) {}
-
-
-
     public static Enchant getEnchantByName(String name) {
-        for(Enchant enchant : enchants) {
-            if(enchant.getName().equalsIgnoreCase(name)) {
+        for (Enchant enchant : enchants) {
+            if (enchant.getName().equalsIgnoreCase(name)) {
                 return enchant;
             }
         }
@@ -68,22 +60,45 @@ public abstract class Enchant {
     }
 
     //Returns a list of all enchants on the item given
-    public static Enchant[] getEnchants(ItemStack item) {
-        return null;
-        //TODO
+    public static Map<Enchant, Integer> getEnchants(ItemStack item) {
+        if (!item.getItemMeta().hasLore()) return null;
+        List<String> lore = item.getItemMeta().getLore();
+        Map<Enchant, Integer> enchants = new HashMap<>();
+        for (String temp : lore) {
+            String loreLine = ChatColor.stripColor(temp).split(" ")[0];
+            if (getEnchantByName(loreLine) != null) {
+                enchants.put(getEnchantByName(loreLine), Utils.romanNumeralToInt(ChatColor.stripColor(temp).split(" ")[1]));
+            } else continue;
+        }
+
+        return enchants;
     }
 
+    //If player is hit with a projectile/melee combat.
+    public void playerHitEvent(EntityDamageByEntityEvent e) {
+    }
+
+    //If the enchant is a tool enchant (block broken)
+    public void playerBreakBlockEvent(BlockBreakEvent e) {
+    }
+
+    //If the enchant is always active
+    public void alwaysActive(Player player) {
+    }
 
     //Getters
     public String getName() {
         return name;
     }
+
     public int getMaxLevel() {
         return maxLevel;
     }
+
     public Rarity getRarity() {
         return rarity;
     }
+
     public ItemSet[] getItemSet() {
         return itemSet;
     }
@@ -91,7 +106,10 @@ public abstract class Enchant {
     public String getDescription() {
         return description;
     }
-    public double getChance() { return chance; }
+
+    public double getChance() {
+        return chance;
+    }
 
     public boolean isActive() {
         return isActive;
