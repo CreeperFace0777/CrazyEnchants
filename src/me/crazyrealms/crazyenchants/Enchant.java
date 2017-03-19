@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Each of the plugins enchants will extend this class
-public abstract class Enchant implements Listener {
+public abstract class Enchant {
 
     //A list of all enchants in the game (mainly for looping through)
     public static List<Enchant> enchants = new ArrayList<Enchant>();
@@ -35,14 +35,12 @@ public abstract class Enchant implements Listener {
         enchants.add(this);
     }
 
-    //Events:
+    //Events (These will not be registered in the enchant, but will be registered in a seperate class. When the enchant is found, the method will be called from here):
 
     //If player is hit with a projectile/melee combat
-    @EventHandler
     public void playerHitEvent (EntityDamageByEntityEvent e) {}
 
     //If the enchant is a tool enchant (block broken)
-    @EventHandler
     public void playerBreakBlockEvent(BlockBreakEvent e) {}
 
     //Getters
