@@ -203,14 +203,14 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Max Level:** 10
 
-**Description:** *Increases the chance of any enchant activating on that armor piece
+**Description:** *Increases the chance of any enchant activating on that armor piece*
 
 ###Glow [Helmet Only]
 **Rarity:** Simple
 
 **Max Level:** 1
 
-**Description:** *Gives the player permenant night vision effect
+**Description:** *Gives the player permenant night vision effect*
 
 ###Blind [Swords and Bow]
 **Rarity:** Rare
