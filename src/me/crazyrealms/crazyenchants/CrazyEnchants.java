@@ -8,9 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class CrazyEnchants extends JavaPlugin {
 
     public void onEnable() {
-        //Loop through every enchant and add each listener
-        for(Enchant e : Enchant.enchants) {
-            Bukkit.getPluginManager().registerEvents(e, this);
-        }
+      
     }
 }
