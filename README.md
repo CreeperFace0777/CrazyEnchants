@@ -88,7 +88,7 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Description:** *Chance to give a burst of haste*
 
-### OverWorld [Boots Only]
+### Overworld [Boots Only]
 **Rarity:** Common
 
 **Max Level:** 3
@@ -144,16 +144,16 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Description:** *Gives your armor more durability*
 
-### Regenaration [Armor Only]
+### Regeneration [Armor Only]
 **Rarity:** Legendary
 
 **Max Level:** 3
 
-**Description:** *Chance yo heal you instantly*
+**Description:** *Chance you heal you instantly*
 
 **Stackable:** Yes
 
-### Stregth [Armor Only]
+### Srength [Armor Only]
 **Rarity:** Legendary
 
 **Max Level:** 3
@@ -161,3 +161,88 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 **Description:** *Chance to do more damage*
 
 **Stackable:** Yes
+
+###Regain [Axe Only]
+**Rarity:** Simple
+
+**Max Level:** 4
+
+**Description:** *Chance to gain hunger when you attack a player*
+
+###Guards [Armor Only]
+**Rarity:** Epic
+
+**Max Level:** 10
+
+**Description:** *Chance to spawn multiple iron golema that will attack enemies around the player*
+
+###AntiLava [Armor Only]
+**Rarity:** Epic
+
+**Max Level:** 1
+
+**Description:** *Gives the player permenatant fire ressistance effect*
+
+
+###Poison [Sword Only]
+**Rarity:** Rare
+
+**Max Level:** 3
+
+**Description:** *Chance to give the enemy the poison effect*
+
+###Freeze [Sword Only]
+**Rarity:** Rare
+
+**Max Level:** 3
+
+**Description:** *Chance to make the enemy not able to move (frozen)*
+
+###Lucky [Armor Only]
+**Rarity:** Epic
+
+**Max Level:** 10
+
+**Description:** *Increases the chance of any enchant activating on that armor piece
+
+###Glow [Helmet Only]
+**Rarity:** Simple
+
+**Max Level:** 1
+
+**Description:** *Gives the player permenant night vision effect
+
+###Blind [Swords and Bow]
+**Rarity:** Rare
+
+**Max Level:** 3
+
+**Description:** *Chance to give the enemy blindness*
+
+###Explode [Bow Only]
+**Rarity:** Rare
+
+**Max Level:** 2
+
+**Description:** *Chance to launch an exploding arrow*
+
+###Leader [Helmet Only]
+**Rarity:** Epic
+
+**Max Level:** 5
+
+**Description:** *The more ASkyblock members you have around you, the more damage you do*
+
+###Blessed [Axe Only]
+**Rarity:** Epic
+
+**Max Level:** 3
+
+**Description:** *Chance to remove all your debuffs**
+
+###Nightmare [Armor Only]
+**Rarity:** Epic
+
+**Max Level:** 5
+
+**Description:** *Chance to spawn cave spiders that will attack your enemy, and give them blindness and slowness. To make sure this isn't overpowered the effects don't last long*
