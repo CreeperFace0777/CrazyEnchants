@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public abstract class Enchant {
     }
 
     //If player is hit with a projectile/melee combat.
-    public void playerHitEvent(EntityDamageByEntityEvent e) {}
+    public void playerHitEvent(EntityDamageEvent e) {}
 
     //If the enchant is a tool enchant (block broken)
     public void playerBreakBlockEvent(BlockBreakEvent e) {}
