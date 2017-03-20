@@ -79,7 +79,7 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Max Level:** 3
 
-**Description:** *Chance to give the poison effect for a few seconds after being hit with the arrow*
+**Description:** *Chance to give the poison effect for a few seconds after hitting an enemy with an arrow*
 
 ### Featherweight [Swords Only]
 **Rarity:** Common
@@ -181,7 +181,7 @@ A custom enchants plugin for Minecraft Spigot v1.8.8
 
 **Max Level:** 1
 
-**Description:** *Gives the player permenatant fire ressistance effect*
+**Description:** *Gives the player permenatant fire resistance effect*
 
 ### Poison [Sword Only]
 **Rarity:** Rare

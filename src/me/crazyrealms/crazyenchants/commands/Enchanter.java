@@ -1,7 +1,11 @@
 package me.crazyrealms.crazyenchants.commands;
 
 import me.crazyrealms.crazyenchants.CrazyEnchants;
+
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,15 +44,25 @@ public class Enchanter implements CommandExecutor {
         ItemStack rare = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 3);
         ItemStack legendary = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1);
 
-        //Item Meta
-        ItemMeta sMeta = simple.getItemMeta();
-        ItemMeta cMeta = common.getItemMeta();
-        ItemMeta eMeta = epic.getItemMeta();
-        ItemMeta rMeta = rare.getItemMeta();
-        ItemMeta lMeta = legendary.getItemMeta();
 
 
-
+    }
+    
+    //Used instead of setting each item's meta/name separately
+    private ItemStack createItem(ItemStack inputStack, String customName, String[] lore) {
+    	ItemMeta itemMeta = inputStack.getItemMeta();
+    	if (customName != null) {
+    		itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', customName));
+    	}
+    	if (lore != null) {
+    		ArrayList<String> newLore = new ArrayList<String>();
+    		for (String loreLine : lore) {
+    			newLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
+    		}
+    		itemMeta.setLore(newLore);
+    	}
+    	inputStack.setItemMeta(itemMeta);
+    	return inputStack;
     }
 
 

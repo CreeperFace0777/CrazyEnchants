@@ -75,16 +75,13 @@ public abstract class Enchant {
     }
 
     //If player is hit with a projectile/melee combat.
-    public void playerHitEvent(EntityDamageByEntityEvent e) {
-    }
+    public void playerHitEvent(EntityDamageByEntityEvent e) {}
 
     //If the enchant is a tool enchant (block broken)
-    public void playerBreakBlockEvent(BlockBreakEvent e) {
-    }
+    public void playerBreakBlockEvent(BlockBreakEvent e) {}
 
     //If the enchant is always active
-    public void alwaysActive(Player player) {
-    }
+    public void alwaysActive(Player player) {}
 
     //Getters
     public String getName() {
