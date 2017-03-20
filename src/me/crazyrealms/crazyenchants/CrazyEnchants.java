@@ -10,7 +10,9 @@ public class CrazyEnchants extends JavaPlugin {
     private static String prefix = ChatColor.DARK_AQUA + "CrazyEnchants » " + ChatColor.GRAY;
 
     public void onEnable() {
-        Bukkit.getPluginCommand("enchanter").setExecutor(new Enchanter());
+        Enchanter enchanter = new Enchanter();
+        Bukkit.getPluginCommand("enchanter").setExecutor(enchanter);
+        Bukkit.getPluginManager().registerEvents(enchanter, this);
     }
 
     public static String getPrefix() {

@@ -4,6 +4,7 @@ import me.crazyrealms.crazyenchants.CrazyEnchants;
 
 import java.util.ArrayList;
 
+import me.crazyrealms.crazyenchants.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -11,11 +12,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Enchanter implements CommandExecutor {
+public class Enchanter implements CommandExecutor, Listener {
+    
+    //Only should be called when the server starts
+    public Enchanter() {
+        setupGUI();
+    }
+
     //The /enchanter GUI
     private Inventory inventory = Bukkit.createInventory(null, 9 , "Enchanter");
     //Plugin prefix
@@ -28,8 +38,9 @@ public class Enchanter implements CommandExecutor {
                 sender.sendMessage(prefix + "You must be a player to do this.");
                 return true;
             }
-            //IF THEY ARE
+            //If the sender is a player
             Player player = (Player) sender;
+            player.openInventory(inventory);
 
 
         }
@@ -38,31 +49,26 @@ public class Enchanter implements CommandExecutor {
 
     private void setupGUI() {
         //Inventory Items
-        ItemStack simple = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
-        ItemStack common = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5);
-        ItemStack epic = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 4);
-        ItemStack rare = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 3);
-        ItemStack legendary = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1);
+        ItemStack simple = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 7), ChatColor.WHITE + "Simple Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "200EXP"});
+        ItemStack common = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 5), ChatColor.GREEN + "Common Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "400EXP"});
+        ItemStack rare = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 3), ChatColor.BLUE + "Rare Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "2000EXP"});
+        ItemStack epic = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 4), ChatColor.YELLOW + "Epic Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "4000EXP"});
+        ItemStack legendary = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 1), ChatColor.GOLD + "Legendary Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "10000EPX"});
 
-
+        inventory.setItem(2, simple);
+        inventory.setItem(3, common);
+        inventory.setItem(4, rare);
+        inventory.setItem(5, epic);
+        inventory.setItem(6, legendary);
 
     }
-    
-    //Used instead of setting each item's meta/name separately
-    private ItemStack createItem(ItemStack inputStack, String customName, String[] lore) {
-    	ItemMeta itemMeta = inputStack.getItemMeta();
-    	if (customName != null) {
-    		itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', customName));
-    	}
-    	if (lore != null) {
-    		ArrayList<String> newLore = new ArrayList<String>();
-    		for (String loreLine : lore) {
-    			newLore.add(ChatColor.translateAlternateColorCodes('&', loreLine));
-    		}
-    		itemMeta.setLore(newLore);
-    	}
-    	inputStack.setItemMeta(itemMeta);
-    	return inputStack;
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) {
+        if(e.getInventory().equals(inventory)) {
+            e.setCancelled(true);
+            //TODO: HANDLE INVENTORY CLICK
+        }
     }
 
 
