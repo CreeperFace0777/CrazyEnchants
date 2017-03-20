@@ -13,6 +13,7 @@ public class CrazyEnchants extends JavaPlugin {
         Enchanter enchanter = new Enchanter();
         Bukkit.getPluginCommand("enchanter").setExecutor(enchanter);
         Bukkit.getPluginManager().registerEvents(enchanter, this);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CheckEnchants(), 0, 5);
     }
 
     public static String getPrefix() {
