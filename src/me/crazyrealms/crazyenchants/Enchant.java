@@ -76,10 +76,10 @@ public abstract class Enchant {
     }
 
     //If player is damaged through non-entity means
-    public void genericDamageEvent(EntiyDamageEvent e) {}
+    public void genericDamageEvent(EntityDamageEvent e) {}
     
     //If player is hit with a projectile/melee combat.
-    public void playerHitEvent(EntityDamageEvent e) {}
+    public void playerHitEvent(EntityDamageByEntityEvent e) {}
 
     //If the enchant is a tool enchant (block broken)
     public void playerBreakBlockEvent(BlockBreakEvent e) {}
