@@ -28,12 +28,12 @@ public class Enderman extends Enchant {
 		if ((int) (Math.random()*3) <= level) { //Since each level is more likely to activate, I have to limit the 1st and 2nd levels.
 		
 			Vector loc1 = e.getEntity().getLocation().toVector(); //Vector of location of Entity
-			Vector loc2 = e.getDamager().getLocation().toVector(); //Vector of location of Entity
+			Vector loc2 = e.getDamager().getLocation().toVector(); //Vector of location of Damager Player
 			
 			Location newLocation = loc2.subtract(loc1).multiply(-1).toLocation(player.getWorld()); //Get the new location of the attacker
 			
 			
-			Vector damagerVelocity = player.getVelocity().multiply(-1); //Save velocity so they don't stop moving
+			Vector damagerVelocity = player.getVelocity().setX(player.getVelocity().getX()*-1).setZ(player.getVelocity().getZ()*-1); //Save velocity so they don't stop moving, and turn them around
 			player.teleport(newLocation);
 			player.setVelocity(damagerVelocity); //Re-set velocity
 			
