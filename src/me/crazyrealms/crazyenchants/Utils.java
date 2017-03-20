@@ -1,6 +1,9 @@
 package me.crazyrealms.crazyenchants;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +80,30 @@ public class Utils {
     public static String camelCase(String string) {
         Character beginning = string.charAt(0);
         return beginning.toString().toUpperCase() + string.split(beginning.toString(), 2)[1].toLowerCase();
+    }
+
+
+    //Used instead of setting each item's meta/name separately
+    public static ItemStack createItem(ItemStack inputStack, String customName, String[] lore) {
+        ItemMeta itemMeta = inputStack.getItemMeta();
+        if (customName != null) {
+            itemMeta.setDisplayName(ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', customName));
+        }
+        if (lore != null) {
+            ArrayList<String> newLore = new ArrayList<>();
+            for (String loreLine : lore) {
+                newLore.add(ChatColor.RESET + ChatColor.translateAlternateColorCodes('&', loreLine));
+            }
+            itemMeta.setLore(newLore);
+        }
+        inputStack.setItemMeta(itemMeta);
+        return inputStack;
+    }
+
+
+    //More convinient as an ItemStack doesn't have to be initialised first
+    public static ItemStack createItem(Material inputMaterial, String customName, String[] lore) {
+        return createItem(new ItemStack(inputMaterial, 1), customName, lore);
     }
 
 }
