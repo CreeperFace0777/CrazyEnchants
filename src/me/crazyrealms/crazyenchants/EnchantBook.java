@@ -2,6 +2,7 @@ package me.crazyrealms.crazyenchants;
 
 
 import me.crazyrealms.crazyenchants.enums.ItemSet;
+import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 //The actual book the player has
 public class EnchantBook {
@@ -52,6 +54,13 @@ public class EnchantBook {
 
         lore.add(ChatColor.DARK_AQUA + "Max Level: " + ChatColor.YELLOW + enchant.getMaxLevel());
     }
+
+    public static EnchantBook getRandomBook(Rarity rarity) {
+        Enchant e = (Enchant) Utils.pickRandom(Enchant.enchants);
+        if(e.getRarity() != rarity) getRandomBook(rarity);
+        return new EnchantBook(new Random().nextInt(e.getMaxLevel())+1, e, new Random().nextInt(100)+1,new Random().nextInt(100)+1);
+    }
+
 
     //GETTERS
     public ItemStack getBook() {

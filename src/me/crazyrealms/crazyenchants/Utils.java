@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Utils {
     //Converts the given integer into a roman numeral
@@ -104,6 +105,10 @@ public class Utils {
     //More convinient as an ItemStack doesn't have to be initialised first
     public static ItemStack createItem(Material inputMaterial, String customName, String[] lore) {
         return createItem(new ItemStack(inputMaterial, 1), customName, lore);
+    }
+
+    public static Object pickRandom(Object... objects) {
+        return objects[new Random().nextInt(objects.length)];
     }
 
 }

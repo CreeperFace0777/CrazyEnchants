@@ -61,17 +61,19 @@ public abstract class Enchant {
     }
 
     //Returns a list of all enchants on the item given
-    public static Map<Enchant, Integer> getEnchants(ItemStack item) {
-        if (!item.getItemMeta().hasLore()) return null;
-        List<String> lore = item.getItemMeta().getLore();
+    public static Map<Enchant, Integer> getEnchants(ItemStack... items) {
         Map<Enchant, Integer> enchants = new HashMap<>();
-        for (String temp : lore) {
-            String loreLine = ChatColor.stripColor(temp).split(" ")[0];
-            if (getEnchantByName(loreLine) != null) {
-                enchants.put(getEnchantByName(loreLine), Utils.romanNumeralToInt(ChatColor.stripColor(temp).split(" ")[1]));
-            } else continue;
+        for(ItemStack item : items) {
+            if (!item.getItemMeta().hasLore()) return null;
+            List<String> lore = item.getItemMeta().getLore();
+            for (String temp : lore) {
+                String loreLine = ChatColor.stripColor(temp).split(" ")[0];
+                if (getEnchantByName(loreLine) != null) {
+                    enchants.put(getEnchantByName(loreLine), Utils.romanNumeralToInt(ChatColor.stripColor(temp).split(" ")[1]));
+                } else continue;
+            }
         }
-
+        if(enchants.isEmpty()) return null;
         return enchants;
     }
 

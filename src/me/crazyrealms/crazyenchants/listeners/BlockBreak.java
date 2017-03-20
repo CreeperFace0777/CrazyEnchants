@@ -1,0 +1,25 @@
+package me.crazyrealms.crazyenchants.listeners;
+
+import me.crazyrealms.crazyenchants.Enchant;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+
+import java.util.Random;
+
+public class BlockBreak implements Listener {
+
+    @EventHandler
+    public void blockBreak(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+        if(Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()) != null) {
+            for(Enchant ench : Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()).keySet()) {
+                //TODO: CHANCE NEED TO BE INCREASED DEPENDING ON LEVEL
+                if(ench.getChance() > new Random().nextInt(100)) {
+                    ench.playerBreakBlockEvent(e);
+                }
+            }
+        }
+    }
+}

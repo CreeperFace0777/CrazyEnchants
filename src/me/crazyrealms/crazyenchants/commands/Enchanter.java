@@ -67,6 +67,28 @@ public class Enchanter implements CommandExecutor, Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         if(e.getInventory().equals(inventory)) {
             e.setCancelled(true);
+            ItemStack item = e.getCurrentItem();
+            Player player = (Player) e.getWhoClicked();
+            if(!(item == null || item.getType() == Material.AIR)) {
+                //If the player clicked on an actual item. The item MUST be an item frame as it's the only item in the inventory
+                short damage = item.getDurability();
+                switch(damage) {
+                    case 7: //Simple
+                        if(player.getTotalExperience() >= 20) {
+
+                        }
+                        break;
+                    case 5: //Common
+                        break;
+                    case 3: //Rare
+                        break;
+                    case 4: //Epic
+                        break;
+                    case 1: //Legendary
+                        break;
+                }
+            }
+
             //TODO: HANDLE INVENTORY CLICK
         }
     }
