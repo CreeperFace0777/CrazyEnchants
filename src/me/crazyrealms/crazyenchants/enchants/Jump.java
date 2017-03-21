@@ -3,7 +3,6 @@ package me.crazyrealms.crazyenchants.enchants;
 import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
-import org.bukkit.Bukkit;
 
 public class Jump extends Enchant {
 
@@ -12,5 +11,4 @@ public class Jump extends Enchant {
 	}
 
 
-	
 }

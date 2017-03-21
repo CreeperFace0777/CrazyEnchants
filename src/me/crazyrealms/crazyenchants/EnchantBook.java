@@ -1,7 +1,6 @@
 package me.crazyrealms.crazyenchants;
 
 
-import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -16,7 +15,6 @@ import java.util.Random;
 public class EnchantBook {
 
     private ItemStack book = new ItemStack(Material.BOOK);
-    private ItemMeta meta = book.getItemMeta();
     private int level; //The level of the enchant
     private Enchant enchant; //The enchant on the book
     private int success; //The success percentage
@@ -32,6 +30,7 @@ public class EnchantBook {
         this.rarity = enchant.getRarity();
 
         //Make the item using the following variables (Reference Image: http://prntscr.com/elt45o)
+        ItemMeta meta = book.getItemMeta();
         meta.setDisplayName(ChatColor.RESET + "" + enchant.getRarity().getRarityColor() + "" + ChatColor.UNDERLINE + enchant.getName() + " " + Utils.intToRomanNumeral(level));
         List<String> lore = new ArrayList<>();
         lore.set(0, ChatColor.GREEN + "" + success + "% Success Rate");
@@ -43,19 +42,20 @@ public class EnchantBook {
             String items = "";
             //Add all the items the enchant can be added to, to one string seperated with a ','
             for(int i = 0; i < enchant.getItemSet().length; i++) {
-                items = items + enchant.getItemSet()[i].toString() + ", ";
+                items += enchant.getItemSet()[i].toString() + ", ";
             } //If there is a ', ' at the end then remove it
             if(items.endsWith(", ")) {
                 items = items.substring(0,items.length()-2);
             }
             //Turn the first enum from all caps to first letter capital
-            lore.add(ChatColor.GRAY + Utils.camelCase(items.toString()) + " Enchantment");
+            lore.add(ChatColor.GRAY + Utils.camelCase(items) + " Enchantment");
         } else {
             //Turn the enum from all caps to first letter capital
             lore.add(ChatColor.GRAY + Utils.camelCase(enchant.getItemSet()[0].toString()) + " Enchantment");
         }
 
         lore.add(ChatColor.DARK_AQUA + "Max Level: " + ChatColor.YELLOW + enchant.getMaxLevel());
+        meta.setLore(lore);
     }
 
     public EnchantBook(Rarity rarity) {

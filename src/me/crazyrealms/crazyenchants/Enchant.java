@@ -70,7 +70,7 @@ public abstract class Enchant {
                 String loreLine = ChatColor.stripColor(temp).split(" ")[0];
                 if (getEnchantByName(loreLine) != null) {
                     enchants.put(getEnchantByName(loreLine), Utils.romanNumeralToInt(ChatColor.stripColor(temp).split(" ")[1]));
-                } else continue;
+                }
             }
         }
         if(enchants.isEmpty()) return null;

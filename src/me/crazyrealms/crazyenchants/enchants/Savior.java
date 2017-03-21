@@ -13,12 +13,12 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Savior extends Enchant {
 
 	public Savior() {
-		super("Savior", 4, Rarity.LEGENDARY, new ItemSet[]{ItemSet.HELMET}, "Chance to heal when low on health", 20, false);
+		super("Savior", 4, Rarity.LEGENDARY, new ItemSet[]{ItemSet.HELMET}, "Chance to heal when low on health", 10, false);
 	}
 	
 	@Override
 	public void genericDamageEvent(EntityDamageEvent e) {
-		if (e instanceof Player) return; //Not a player, can't have savior.
+		if (!(e instanceof Player)) return; //Not a player, can't have savior.
 		Player pl = (Player) e.getEntity();
 		
 		if (pl.getHealth()/pl.getMaxHealth() <= .20) { //Less than 20% health remaining, <= 2 full hearts.

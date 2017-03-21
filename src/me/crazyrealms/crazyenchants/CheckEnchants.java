@@ -3,9 +3,6 @@ package me.crazyrealms.crazyenchants;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.Map;
-import java.util.Set;
-
 public class CheckEnchants implements Runnable {
 
     @Override
@@ -20,7 +17,7 @@ public class CheckEnchants implements Runnable {
                     }
                 }
 
-            } /* The player doesn't have any enchants*/else continue;
+            }
         }
 
 

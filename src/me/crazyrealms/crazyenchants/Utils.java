@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Utils {
     //Converts the given integer into a roman numeral
-    public static String intToRomanNumeral(int i) {
+    private static String intToRomanNumeral(int i) {
         //Max level is 10 so I may as well do it manually. If you (ipodtouch0218) can find a better way then go ahead :)
         switch (i) {
             case 1:
