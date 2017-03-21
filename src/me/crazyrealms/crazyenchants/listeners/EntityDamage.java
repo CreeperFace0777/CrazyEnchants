@@ -35,7 +35,7 @@ public class EntityDamage implements Listener {
         Player p = (Player) e.getEntity();
         if(Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()) != null) {
             for(Enchant ench : Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()).keySet()) {
-                //TODO: CHANCE NEED TO BE INCREASED DEPENDING ON LEVEL
+                //TODO: Needs to be finished
                 if(ench.getChance() > new Random().nextInt(100)) {
                     ench.genericDamageEvent(e);
                 }
