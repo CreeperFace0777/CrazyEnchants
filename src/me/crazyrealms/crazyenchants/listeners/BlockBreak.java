@@ -18,7 +18,6 @@ public class BlockBreak implements Listener {
                 int chance = (int) (ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1));
                 if (chance > new Random().nextInt(100))
                     ench.playerBreakBlockEvent(e);
-
             }
         }
     }
