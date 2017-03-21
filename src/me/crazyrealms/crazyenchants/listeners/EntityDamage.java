@@ -6,6 +6,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.Random;
 
@@ -38,6 +40,19 @@ public class EntityDamage implements Listener {
                 int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1);
                 if(chance > new Random().nextInt(100)) {
                     ench.genericDamageEvent(e);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void playerDeathEvent(EntityDeathEvent e) {
+        Player p =  e.getEntity().getKiller();
+        if(Enchant.getEnchantsOnPlayer(p) != null) {
+            for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1);
+                if(chance > new Random().nextInt(100)) {
+                    ench.entityDeathEvent(e);
                 }
             }
         }
