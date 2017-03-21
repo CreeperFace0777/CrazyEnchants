@@ -17,10 +17,10 @@ public class EntityDamage implements Listener {
         if(!(e.getDamager() instanceof Player)) return;
         //Damager IS player
         Player p = (Player) e.getDamager();
-        if(Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()) != null) {
-            for(Enchant ench : Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()).keySet()) {
-                //TODO: CHANCE NEED TO BE INCREASED DEPENDING ON LEVEL
-                if(ench.getChance() > new Random().nextInt(100)) {
+        if(Enchant.getEnchantsOnPlayer(p) != null) {
+            for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = (int) (ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1));
+                if(chance > new Random().nextInt(100)) {
                     ench.playerHitEvent(e);
                 }
             }
@@ -33,10 +33,10 @@ public class EntityDamage implements Listener {
         if(!(e.getEntity() instanceof Player)) return;
         //Damager IS player
         Player p = (Player) e.getEntity();
-        if(Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()) != null) {
-            for(Enchant ench : Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()).keySet()) {
-                //TODO: CHANCE NEED TO BE INCREASED DEPENDING ON LEVEL
-                if(ench.getChance() > new Random().nextInt(100)) {
+        if(Enchant.getEnchantsOnPlayer(p) != null) {
+            for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = (int) (ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1));
+                if(chance > new Random().nextInt(100)) {
                     ench.genericDamageEvent(e);
                 }
             }

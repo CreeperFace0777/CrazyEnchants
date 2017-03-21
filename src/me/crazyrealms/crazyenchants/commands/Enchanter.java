@@ -57,7 +57,7 @@ public class Enchanter implements CommandExecutor, Listener {
 
         inventory.setItem(2, simple);
         inventory.setItem(3, common);
-        inventory.setItem(4, rare);
+        inventory.setItem(4, rare)      ;
         inventory.setItem(5, epic);
         inventory.setItem(6, legendary);
 
@@ -75,7 +75,8 @@ public class Enchanter implements CommandExecutor, Listener {
                 switch(damage) {
                     case 7: //Simple
                         if(player.getTotalExperience() >= 20) {
-
+                            player.setTotalExperience(player.getTotalExperience()-20);
+                            player.getInventory().addItem();
                         }
                         break;
                     case 5: //Common

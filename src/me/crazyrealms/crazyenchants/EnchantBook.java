@@ -22,11 +22,14 @@ public class EnchantBook {
     private int success; //The success percentage
     private int destroy; //The destroy percentage
 
+    private Rarity rarity;
+
     public EnchantBook(int level, Enchant enchant, int success, int destroy) {
         this.level = level;
         this.enchant = enchant;
         this.success = success;
         this.destroy = destroy;
+        this.rarity = enchant.getRarity();
 
         //Make the item using the following variables (Reference Image: http://prntscr.com/elt45o)
         meta.setDisplayName(ChatColor.RESET + "" + enchant.getRarity().getRarityColor() + "" + ChatColor.UNDERLINE + enchant.getName() + " " + Utils.intToRomanNumeral(level));
@@ -53,6 +56,12 @@ public class EnchantBook {
         }
 
         lore.add(ChatColor.DARK_AQUA + "Max Level: " + ChatColor.YELLOW + enchant.getMaxLevel());
+    }
+
+    public EnchantBook(Rarity rarity) {
+        this.rarity = rarity;
+
+        //TODO: Set the enchant book
     }
 
     public static EnchantBook getRandomBook(Rarity rarity) {

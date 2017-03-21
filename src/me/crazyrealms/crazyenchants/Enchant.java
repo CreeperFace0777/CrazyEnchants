@@ -26,16 +26,16 @@ public abstract class Enchant {
     private Rarity rarity; //The enchants rarity
     private ItemSet[] itemSet; //Items the enchant can be applied to
     private String description; //What the enchant does
-    private double chance; //The chance of the enchant activating
+    private int chance; //The chance of the enchant activating
     private boolean isActive; //True if the enchant is always active
 
 
     //Runs for new enchants
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, double chance) {
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance) {
         this(name, maxLevel, rarity, itemSet, description, chance, false);
     }
 
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, double chance, boolean active) {
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, boolean active) {
         //Sets variables
         this.name = name;
         this.maxLevel = maxLevel;
@@ -76,6 +76,11 @@ public abstract class Enchant {
         if(enchants.isEmpty()) return null;
         return enchants;
     }
+    //Gets the enchants on the players armour and currently held item
+    public static Map<Enchant, Integer> getEnchantsOnPlayer(Player player) {
+        return getEnchants(player.getItemInHand(), player.getInventory().getHelmet(), player.getInventory().getChestplate(), player.getInventory().getLeggings(), player.getInventory().getBoots());
+    }
+
 
     //If player is damaged through non-entity means
     public void genericDamageEvent(EntityDamageEvent e) {}
@@ -110,7 +115,7 @@ public abstract class Enchant {
         return description;
     }
 
-    public double getChance() {
+    public int getChance() {
         return chance;
     }
 
