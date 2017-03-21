@@ -42,6 +42,10 @@ return;
         if(Enchant.getEnchantsOnPlayer(p) != null) {
             for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
                 int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1);
+if(chance >= 100) {
+ench.genericDamageEvent(e);
+return;
+}
                 if(chance > new Random().nextInt(100)) {
                     ench.genericDamageEvent(e);
                 }
@@ -55,6 +59,10 @@ return;
         if(Enchant.getEnchantsOnPlayer(p) != null) {
             for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
                 int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench)-1);
+if(chance >= 100) {
+ench.entityDeathEvent(e);
+return;
+}
                 if(chance > new Random().nextInt(100)) {
                     ench.entityDeathEvent(e);
                 }
