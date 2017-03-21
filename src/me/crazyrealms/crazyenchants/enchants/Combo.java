@@ -37,7 +37,7 @@ public class Combo extends Enchant {
 			
 			double damage = e.getDamage();
 			damage = damage + (damage * level/6 * (1-(1/hitCounter.get(damagerPlayer.getUniqueId())))); //damage = damage + damage * 1/level * (1 - 1/hitCounter) - [ask me for an example!]
-			
+			e.setDamage(damage);
 		}
 	}
 }

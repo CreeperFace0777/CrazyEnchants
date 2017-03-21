@@ -13,7 +13,7 @@ public enum Rarity {
     }
 
     public ChatColor getRarityColor() {
-        return rarityColor;
+        return rarityColor == null ? ChatColor.GRAY : rarityColor; //If the enchant is null then it will return the chat color gray
     }
 
 }
