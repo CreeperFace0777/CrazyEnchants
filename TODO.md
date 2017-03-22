@@ -11,6 +11,7 @@
 7. Black Scroll is an item that can remove a random custom enchant on an item. You will then get the book to that enchant with a random success and destroy rate.
 8. White Scroll is an item that will protect an item from destroying if the players book would normally destroy the item.
 9. The player can only add a certain number of enchants to an item. This number is determined by the permission they have.
+10. Admin command to add a custom enchant to an item
 
 
 #### More information can be found on the trello card: https://trello.com/c/CLRx6oZF/7-crazyenchants
