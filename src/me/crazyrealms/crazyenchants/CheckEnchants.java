@@ -9,7 +9,7 @@ public class CheckEnchants implements Runnable {
     public void run() {
         for(Player p : Bukkit.getOnlinePlayers()) {
             //Check if the armor or the item held contains any enchants
-            if(Enchant.getEnchants(p.getItemInHand(), p.getInventory().getBoots(), p.getInventory().getChestplate(), p.getInventory().getHelmet(), p.getInventory().getLeggings()) != null) {
+            if(Enchant.getEnchantsOnPlayer(p) != null) {
                 //The players armor/item contains an enchant
                 for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
                     if(ench.isActive()) {
