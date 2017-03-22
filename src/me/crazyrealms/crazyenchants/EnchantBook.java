@@ -56,12 +56,19 @@ public class EnchantBook {
 
         lore.add(ChatColor.DARK_AQUA + "Max Level: " + ChatColor.YELLOW + enchant.getMaxLevel());
         meta.setLore(lore);
+        book.setItemMeta(meta);
     }
 
     public EnchantBook(Rarity rarity) {
         this.rarity = rarity;
 
-        //TODO: Set the enchant book
+        ItemMeta meta = book.getItemMeta();
+        meta.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor()  + Utils.camelCase(rarity.toString()) + " Enchantment Book (Right Click)");
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.RESET + "" + ChatColor.GRAY + "Right Click to receive a random");
+        lore.add(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + ChatColor.RESET + " enchantment");
+        meta.setLore(lore);
+        book.setItemMeta(meta);
     }
 
     public static EnchantBook getRandomBook(Rarity rarity) {
