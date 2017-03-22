@@ -3,6 +3,7 @@ package me.crazyrealms.crazyenchants.enchants;
 import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
+import org.bukkit.entity.Creature;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class XP extends Enchant {
@@ -12,7 +13,10 @@ public class XP extends Enchant {
 
     @Override
     public void entityDeathEvent(EntityDeathEvent e) {
-        //TODO: GET MORE XP
+        //If the entity killed is a mob (Not a player or another entity such as experience)
+        if(e.getEntity() instanceof Creature) {
+            e.setDroppedExp(e.getDroppedExp() + e.getDroppedExp()*(Enchant.getEnchantsOnPlayer(e.getEntity().getKiller()).get(this)/2));
+        }
         
     }
 

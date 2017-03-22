@@ -6,10 +6,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -30,14 +27,19 @@ public abstract class Enchant {
     private String description; //What the enchant does
     private int chance; //The chance of the enchant activating
     private boolean isActive; //True if the enchant is always active
+    private boolean stackable; //If the enchant is stackable
 
 
     //Runs for new enchants
     public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance) {
-        this(name, maxLevel, rarity, itemSet, description, chance, false);
+        this(name, maxLevel, rarity, itemSet, description, chance, false, false);
+    }
+    //Runs for new enchants
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, boolean stackable) {
+        this(name, maxLevel, rarity, itemSet, description, chance, false, stackable);
     }
 
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, boolean active) {
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, boolean active, boolean stackable) {
         //Sets variables
         this.name = name;
         this.maxLevel = maxLevel;
@@ -46,6 +48,7 @@ public abstract class Enchant {
         this.description = description;
         this.chance = chance;
         this.isActive = active;
+        this.stackable = stackable;
 
         //Adds the enchant to the enchants list
         enchants.add(this);
@@ -64,6 +67,7 @@ public abstract class Enchant {
 
     //Returns a list of all enchants on the item given
     public static Map<Enchant, Integer> getEnchants(ItemStack... items) {
+        //TODO: ADD STACKABLE COMPATABILITY
         Map<Enchant, Integer> enchants = new HashMap<>();
         for(ItemStack item : items) {
             if (!item.getItemMeta().hasLore()) return null;
@@ -98,6 +102,9 @@ public abstract class Enchant {
 
     //If an entity is killed.
     public void entityDeathEvent(EntityDeathEvent e) {}
+
+    //Check an entity is hit with a bow
+    public void arrowHit(ProjectileHitEvent e) {}
 
     //Getters
     public String getName() {
@@ -135,3 +142,5 @@ public abstract class Enchant {
     }
 
 }
+
+//TODO: KNOWN ISSUE: Can hit player with an item that has enchants (armor) other than a sword, and those enchants may used in a player attack event.
