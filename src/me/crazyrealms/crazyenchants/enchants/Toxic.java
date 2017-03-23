@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Toxic extends Enchant {
     public Toxic() {
-        super("Toxic", 3, Rarity.RARE, new ItemSet[]{ItemSet.BOW}, "Gives the poison effect once a player is hit with an arrow", 20, false);
+        super("Toxic", 3, Rarity.RARE, new ItemSet[]{ItemSet.BOW}, "Gives the poison effect once a player is hit with an arrow", 20, 10, false);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class Toxic extends Enchant {
         if(!(e.getEntity().getShooter() instanceof Player)) return;
         Player player = (Player) e.getEntity().getShooter();
         if(e.getEntity().getType() == EntityType.ARROW) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 2+Enchant.getEnchantsOnPlayer(player).get(this), Enchant.getEnchantsOnPlayer(player).get(this)));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40+Enchant.getEnchantsOnPlayer(player).get(this)*20, Enchant.getEnchantsOnPlayer(player).get(this)));
         }
 
     }

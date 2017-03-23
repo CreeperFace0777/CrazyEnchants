@@ -16,7 +16,7 @@ public class Enderman extends Enchant {
 
 	//15% chance because I have to do the most likely percentage, the 3rd level
 	public Enderman() { 
-		super("Enderman", 3, Rarity.EPIC, new ItemSet[]{ItemSet.BOOTS}, "Chance to teleport behind your enemy", 15, false);
+		super("Enderman", 3, Rarity.EPIC, new ItemSet[]{ItemSet.BOOTS}, "Chance to teleport behind your enemy", 15, 5, false);
 	}
 	
 	@Override

@@ -14,7 +14,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class LuckyOre extends Enchant {
 
 	public LuckyOre() {
-		super("LuckyOre", 5, Rarity.RARE, new ItemSet[]{ItemSet.PICKAXE}, "Chance to instantly smelt an ore mined", 15, false, false);
+		super("LuckyOre", 5, Rarity.RARE, new ItemSet[]{ItemSet.PICKAXE}, "Chance to instantly smelt an ore mined", 15, 5, false, false);
 	}
 	
 	@Override

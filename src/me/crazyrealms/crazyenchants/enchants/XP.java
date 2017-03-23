@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class XP extends Enchant {
     XP() {
-        super("XP", 4, Rarity.LEGENDARY, new ItemSet[]{ItemSet.SWORD}, "Gives the player more experience points when killing a mob", 100, false);
+        super("XP", 4, Rarity.LEGENDARY, new ItemSet[]{ItemSet.SWORD}, "Gives the player more experience points when killing a mob", 100, 0, false);
     }
 
     @Override

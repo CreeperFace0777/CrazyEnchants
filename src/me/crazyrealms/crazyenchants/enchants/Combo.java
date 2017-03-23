@@ -17,7 +17,7 @@ public class Combo extends Enchant {
 	private static Map<UUID, Integer> hitCounter = new HashMap<UUID, Integer>(); //If you can think of a better way to do this, replace this. Stores the hitcounter of all players.
 	
 	public Combo() {
-		super("Combo", 6, Rarity.LEGENDARY, new ItemSet[]{ItemSet.ALL_WEAPONS}, "The more you attack without being hit, the more damage you do", 100, false);
+		super("Combo", 6, Rarity.LEGENDARY, new ItemSet[]{ItemSet.ALL_WEAPONS}, "The more you attack without being hit, the more damage you do", 100, 0, false);
 	}
 	
 	@Override

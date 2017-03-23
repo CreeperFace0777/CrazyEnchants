@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Speed extends Enchant {
     //Setting up the enchant
     public Speed() {
-        super("Speed", 3, Rarity.LEGENDARY, new ItemSet[]{ItemSet.BOOTS}, "Permanent speed effect, each level increases speed level by 1", 100, true);
+        super("Speed", 3, Rarity.LEGENDARY, new ItemSet[]{ItemSet.BOOTS}, "Permanent speed effect, each level increases speed level by 1", 100, 0, true);
     }
 
     public void alwaysActive(Player player) {

@@ -28,18 +28,19 @@ public abstract class Enchant {
     private int chance; //The chance of the enchant activating
     private boolean isActive; //True if the enchant is always active
     private boolean stackable; //If the enchant is stackable
+    private int chanceIncrease; //How much the enchantment chance increases per level
 
 
     //Runs for new enchants
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance) {
-        this(name, maxLevel, rarity, itemSet, description, chance, false, false);
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease) {
+        this(name, maxLevel, rarity, itemSet, description, chance, chanceIncrease, false, false);
     }
     //Runs for new enchants
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, boolean stackable) {
-        this(name, maxLevel, rarity, itemSet, description, chance, false, stackable);
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease, boolean stackable) {
+        this(name, maxLevel, rarity, itemSet, description, chance, chanceIncrease, false, stackable);
     }
 
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, boolean active, boolean stackable) {
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease, boolean active, boolean stackable) {
         //Sets variables
         this.name = name;
         this.maxLevel = maxLevel;
@@ -49,6 +50,7 @@ public abstract class Enchant {
         this.chance = chance;
         this.isActive = active;
         this.stackable = stackable;
+        this.chanceIncrease = chanceIncrease;
 
         //Adds the enchant to the enchants list
         enchants.add(this);
@@ -105,7 +107,10 @@ public abstract class Enchant {
 
     //Check an entity is hit with a bow
     public void arrowHit(ProjectileHitEvent e) {}
-
+    
+    //When targeted by an entity
+    public void entityTarget(EntityTargetEvent e) {} 
+    
     //Getters
     public String getName() {
         return name;
@@ -135,6 +140,10 @@ public abstract class Enchant {
         return isActive;
     }
 
+    public int getChanceIncrease() {
+    	return chanceIncrease;
+    }
+    
     //Setters
 
     public void setActive(boolean active) {
