@@ -105,8 +105,8 @@ public abstract class Enchant {
     //If an entity is killed.
     public void entityDeathEvent(EntityDeathEvent e) {}
 
-    //Check an entity is hit with a bow
-    public void arrowHit(ProjectileHitEvent e) {}
+    //If a block is hit with a bow
+    public void arrowHitBlock(ProjectileHitEvent e) {}
     
     //When targeted by an entity
     public void entityTarget(EntityTargetEvent e) {} 
