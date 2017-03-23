@@ -3,6 +3,7 @@ package me.crazyrealms.crazyenchants.listeners;
 import me.crazyrealms.crazyenchants.CrazyEnchants;
 import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.EnchantBook;
+import me.crazyrealms.crazyenchants.Utils;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,10 +14,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EnchantAdd implements Listener {
     Map<Player, Boolean> hasClicked = new HashMap<>();
@@ -62,15 +60,24 @@ public class EnchantAdd implements Listener {
                                 } else lore = new ArrayList<>();
                                 EnchantBook enchBook = EnchantBook.getEnchantBook(item);
                                 //Add the enchant to item if the success is done.
-                                if(enchBook.getSuccess() == 100) {
-                                    //TODO ADD LORE TO ITEM
+                                if(enchBook.getSuccess() == 100 || enchBook.getSuccess() >= new Random().nextInt(100)) {
+                                    List<String> lorea;
+                                    if (e.getCurrentItem().getItemMeta().hasLore()) lorea = e.getCurrentItem().getItemMeta().getLore();
+                                    else lorea = new ArrayList<>();
+                                    lorea.add(enchBook.getEnchant().getRarity().getRarityColor() + enchBook.getEnchant().getName() + " " + Utils.intToRomanNumeral(enchBook.getLevel()));
+                                    e.getCurrentItem().getItemMeta().setLore(lorea);
+                                    e.getWhoClicked().getInventory().remove(item);
+                                    e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
+                                    return;
+                                } else if(enchBook.getDestroy() == 100 || enchBook.getDestroy() >= new Random().nextInt(100)) {
+                                    e.getWhoClicked().getInventory().remove(e.getCurrentItem());
+                                    e.getWhoClicked().getInventory().remove(item);
+                                    e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
                                 }
-
-
                             }
 
                 }
-                //TODO: if the player presses an itemstack that an enchant can be applied to, add the enchant
+                //TODO: Add compatibility for whitescroll
             } else {
                 if (e.getCurrentItem().getType() == Material.BOOK)
                     oldItem.put(player, e.getCurrentItem());
