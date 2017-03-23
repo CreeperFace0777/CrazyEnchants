@@ -38,14 +38,14 @@ public class EnchantBook {
         //Format the description so that it doesn't go off page
         lore.addAll(Utils.loreLineFormat(enchant.getDescription(), ChatColor.YELLOW));
         //If the enchant can go on more than 1 thing
-        if(enchant.getItemSet().length > 1) {
+        if (enchant.getItemSet().length > 1) {
             String items = "";
             //Add all the items the enchant can be added to, to one string seperated with a ','
-            for(int i = 0; i < enchant.getItemSet().length; i++) {
+            for (int i = 0; i < enchant.getItemSet().length; i++) {
                 items += enchant.getItemSet()[i].toString() + ", ";
             } //If there is a ', ' at the end then remove it
-            if(items.endsWith(", ")) {
-                items = items.substring(0,items.length()-2);
+            if (items.endsWith(", ")) {
+                items = items.substring(0, items.length() - 2);
             }
             //Turn the first enum from all caps to first letter capital
             lore.add(ChatColor.GRAY + Utils.camelCase(items) + " Enchantment");
@@ -63,7 +63,7 @@ public class EnchantBook {
         this.rarity = rarity;
 
         ItemMeta meta = book.getItemMeta();
-        meta.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor()  + Utils.camelCase(rarity.toString()) + " Enchantment Book (Right Click)");
+        meta.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + " Enchantment Book (Right Click)");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RESET + "" + ChatColor.GRAY + "Right Click to receive a random");
         lore.add(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + ChatColor.RESET + " enchantment");
@@ -71,11 +71,34 @@ public class EnchantBook {
         book.setItemMeta(meta);
     }
 
+    public static EnchantBook getEnchantBook(ItemStack item) {
+        int success;
+        int destroy;
+        if (Enchant.getEnchantByName(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0])) == null)
+            return null;
+        List<String> lore = item.getItemMeta().getLore();
+        if (lore == null) return null;
+        if (lore.get(0).split("%")[0] == null || lore.get(1).split("%")[0] == null) return null;
+        try {
+            success = Integer.parseInt(ChatColor.stripColor(lore.get(0).split("%")[0]));
+            destroy = Integer.parseInt(ChatColor.stripColor(lore.get(1).split("%")[0]));
+        } catch (Exception e) {
+            return null;
+        }
+
+        return new EnchantBook(Utils.romanNumeralToInt(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[1])), Enchant.getEnchantByName(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0])), success, destroy);
+    }
+
     public static EnchantBook getRandomBook(Rarity rarity) {
         Enchant e = (Enchant) Utils.pickRandom(Enchant.enchants);
-        if(e.getRarity() != rarity) getRandomBook(rarity);
-        return new EnchantBook(new Random().nextInt(e.getMaxLevel())+1, e, new Random().nextInt(100)+1,new Random().nextInt(100)+1);
+        if (e.getRarity() != rarity) getRandomBook(rarity);
+        return new EnchantBook(new Random().nextInt(e.getMaxLevel()) + 1, e, new Random().nextInt(100) + 1, new Random().nextInt(100) + 1);
     }
+
+    public void addEnchant(ItemStack item) {
+        //TODO: ADD LORE TO THE ITEM
+    }
+
 
 
     //GETTERS

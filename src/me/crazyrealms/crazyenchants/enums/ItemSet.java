@@ -1,6 +1,41 @@
 package me.crazyrealms.crazyenchants.enums;
 
+import org.bukkit.Material;
+
+import java.util.List;
+
 //Possible items an enchant can be enchanted on
 public enum ItemSet {
-    HELMET, CHESTPLATE, LEGGINGS, BOOTS, SWORD, BOW, PICKAXE, SHOVEL, AXE, HOE, ALL_TOOLS, ALL_ARMOUR, ALL_WEAPONS
+    HELMET(Material.LEATHER_HELMET, Material.IRON_HELMET, Material.CHAINMAIL_HELMET, Material.GOLD_HELMET, Material.DIAMOND_HELMET),
+    CHESTPLATE(Material.LEATHER_CHESTPLATE, Material.IRON_CHESTPLATE, Material.CHAINMAIL_CHESTPLATE, Material.GOLD_CHESTPLATE, Material.DIAMOND_CHESTPLATE),
+    LEGGINGS(Material.LEATHER_LEGGINGS, Material.IRON_LEGGINGS, Material.CHAINMAIL_LEGGINGS, Material.GOLD_LEGGINGS, Material.DIAMOND_LEGGINGS),
+    BOOTS(Material.LEATHER_BOOTS, Material.IRON_BOOTS, Material.CHAINMAIL_BOOTS, Material.GOLD_BOOTS, Material.DIAMOND_BOOTS),
+    SWORD(Material.WOOD_SWORD, Material.IRON_SWORD, Material.STONE_SWORD, Material.GOLD_SWORD, Material.DIAMOND_SWORD),
+    BOW(Material.BOW),
+    PICKAXE(Material.WOOD_PICKAXE, Material.IRON_PICKAXE, Material.STONE_PICKAXE, Material.GOLD_PICKAXE, Material.DIAMOND_PICKAXE),
+    SHOVEL(Material.WOOD_SPADE, Material.IRON_SPADE, Material.STONE_SPADE, Material.GOLD_SPADE, Material.DIAMOND_SPADE),
+    AXE(Material.WOOD_AXE, Material.IRON_AXE, Material.STONE_AXE, Material.GOLD_AXE, Material.DIAMOND_AXE),
+    HOE(Material.WOOD_HOE, Material.IRON_HOE, Material.STONE_HOE, Material.GOLD_HOE, Material.DIAMOND_HOE),
+    ALL_TOOLS(PICKAXE, SHOVEL, AXE, HOE),
+    ALL_ARMOUR(HELMET, CHESTPLATE, LEGGINGS, BOOTS),
+    ALL_WEAPONS(SWORD, AXE);
+
+
+    private List<Material> items;
+
+    ItemSet(Material... items) {
+        for (Material item : items) {
+            this.items.add(item);
+        }
+    }
+
+    ItemSet(ItemSet... it) {
+        for (ItemSet i : it) {
+            items.addAll(i.getItems());
+        }
+    }
+
+    public List<Material> getItems() {
+        return items;
+    }
 }
