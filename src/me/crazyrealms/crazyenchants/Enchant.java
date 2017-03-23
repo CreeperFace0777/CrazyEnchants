@@ -69,7 +69,7 @@ public abstract class Enchant {
 
     //Returns a list of all enchants on the item given
     public static Map<Enchant, Integer> getEnchants(ItemStack... items) {
-        //TODO: ADD STACKABLE COMPATABILITY
+        //TODO: ADD STACKABLE COMPATIBILITY
         Map<Enchant, Integer> enchants = new HashMap<>();
         for(ItemStack item : items) {
             if (!item.getItemMeta().hasLore()) return null;
@@ -144,6 +144,7 @@ public abstract class Enchant {
     	return chanceIncrease;
     }
     
+
     //Setters
 
     public void setActive(boolean active) {
