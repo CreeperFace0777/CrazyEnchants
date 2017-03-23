@@ -58,7 +58,7 @@ public class EntityDamage implements Listener {
         Player p = e.getEntity().getKiller();
         if (Enchant.getEnchantsOnPlayer(p) != null) {
             for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
                 if (chance >= 100) {
                     ench.entityDeathEvent(e);
                     return;
@@ -77,7 +77,7 @@ public class EntityDamage implements Listener {
         Player p = (Player) e.getEntity().getShooter();
         if (Enchant.getEnchantsOnPlayer(p) != null) {
             for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
                 if (chance >= 100) {
                     ench.arrowHit(e);
                     return;

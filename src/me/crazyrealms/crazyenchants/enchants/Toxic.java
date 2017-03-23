@@ -3,9 +3,9 @@ package me.crazyrealms.crazyenchants.enchants;
 import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,12 +15,14 @@ public class Toxic extends Enchant {
     }
 
     @Override
-    public void arrowHit(ProjectileHitEvent e) {
-        if(!(e.getEntity().getShooter() instanceof Player)) return;
-        Player player = (Player) e.getEntity().getShooter();
-        if(e.getEntity().getType() == EntityType.ARROW) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40+Enchant.getEnchantsOnPlayer(player).get(this)*20, Enchant.getEnchantsOnPlayer(player).get(this)));
-        }
-
+    public void playerHitEvent(EntityDamageByEntityEvent e) {
+    	if (!(e.getDamager() instanceof Player)) return;
+    	Player damager = (Player) e.getDamager();
+    	if (!(e.getEntity() instanceof LivingEntity)) return;
+    	LivingEntity entity = (LivingEntity) e.getEntity();
+    	
+    	int level = Enchant.getEnchantsOnPlayer(damager).get(this);
+    	
+    	entity.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40*level, 1), true);
     }
 }
