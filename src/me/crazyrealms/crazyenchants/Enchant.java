@@ -1,13 +1,15 @@
 package me.crazyrealms.crazyenchants;
 
 
-import me.crazyrealms.crazyenchants.customevents.*;
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
+import me.crazyrealms.crazyenchants.customevents.PlayerDamaged;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public abstract class Enchant {
     public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease) {
         this(name, maxLevel, rarity, itemSet, description, chance, chanceIncrease, false, false);
     }
+
     //Runs for new enchants
     public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease, boolean stackable) {
         this(name, maxLevel, rarity, itemSet, description, chance, chanceIncrease, false, stackable);
@@ -72,19 +75,23 @@ public abstract class Enchant {
     public static Map<Enchant, Integer> getEnchants(ItemStack... items) {
         //TODO: ADD STACKABLE COMPATIBILITY
         Map<Enchant, Integer> enchants = new HashMap<>();
-        for(ItemStack item : items) {
-            if (!item.getItemMeta().hasLore()) return null;
-            List<String> lore = item.getItemMeta().getLore();
-            for (String temp : lore) {
-                String loreLine = ChatColor.stripColor(temp).split(" ")[0];
-                if (getEnchantByName(loreLine) != null) {
-                    enchants.put(getEnchantByName(loreLine), Utils.romanNumeralToInt(ChatColor.stripColor(temp).split(" ")[1]));
+        for (ItemStack item : items) {
+            if (item != null) continue;
+            if (item.hasItemMeta()) {
+                if (!item.getItemMeta().hasLore()) continue;
+                List<String> lore = item.getItemMeta().getLore();
+                for (String temp : lore) {
+                    String loreLine = ChatColor.stripColor(temp).split(" ")[0];
+                    if (getEnchantByName(loreLine) != null) {
+                        enchants.put(getEnchantByName(loreLine), Utils.romanNumeralToInt(ChatColor.stripColor(temp).split(" ")[1]));
+                    }
                 }
             }
         }
-        if(enchants.isEmpty()) return null;
+        if (enchants.isEmpty()) return null;
         return enchants;
     }
+
     //Gets the enchants on the players armour and currently held item
     public static Map<Enchant, Integer> getEnchantsOnPlayer(Player player) {
         return getEnchants(player.getItemInHand(), player.getInventory().getHelmet(), player.getInventory().getChestplate(), player.getInventory().getLeggings(), player.getInventory().getBoots());
@@ -92,24 +99,30 @@ public abstract class Enchant {
 
 
     //If a player is damaged, either naturally or through entities.
-    public void playerDamaged(PlayerDamaged e) {}
+    public void playerDamaged(PlayerDamaged e) {
+    }
 
     //When a player attacks an entity
-    public void playerAttackedEntity(PlayerAttackedEntity e) {}
-    
+    public void playerAttackedEntity(PlayerAttackedEntity e) {
+    }
+
     //If the enchant is a tool enchant (block broken)
-    public void playerBreakBlock(BlockBreakEvent e) {}
+    public void playerBreakBlock(BlockBreakEvent e) {
+    }
 
     //If the enchant is always active
-    public void alwaysActive(Player player) {}
+    public void alwaysActive(Player player) {
+    }
 
     //If an entity is killed.
-    public void entityDeathEvent(EntityDeathEvent e) {}
+    public void entityDeathEvent(EntityDeathEvent e) {
+    }
 
     //When a projectile hits a block
-    public void arrowHit(ProjectileHitEvent e) {}
+    public void arrowHit(ProjectileHitEvent e) {
+    }
 
-    
+
     //Getters
     public String getName() {
         return name;
@@ -139,15 +152,15 @@ public abstract class Enchant {
         return isActive;
     }
 
-    public int getChanceIncrease() {
-    	return chanceIncrease;
+    public void setActive(boolean active) {
+        isActive = active;
     }
-    
+
 
     //Setters
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public int getChanceIncrease() {
+        return chanceIncrease;
     }
 
 }
