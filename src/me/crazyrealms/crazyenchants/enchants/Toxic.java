@@ -1,11 +1,11 @@
 package me.crazyrealms.crazyenchants.enchants;
 
 import me.crazyrealms.crazyenchants.Enchant;
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,11 +15,11 @@ public class Toxic extends Enchant {
     }
 
     @Override
-    public void playerHitEvent(EntityDamageByEntityEvent e) {
-    	if (!(e.getDamager() instanceof Player)) return;
-    	Player damager = (Player) e.getDamager();
-    	if (!(e.getEntity() instanceof LivingEntity)) return;
-    	LivingEntity entity = (LivingEntity) e.getEntity();
+    public void playerAttackedEntity(PlayerAttackedEntity e) {
+    	Player damager = e.getPlayerAttacker();
+    	
+    	if (!(e.getAttackedEntity() instanceof LivingEntity)) return;
+    	LivingEntity entity = (LivingEntity) e.getAttackedEntity();
     	
     	int level = Enchant.getEnchantsOnPlayer(damager).get(this);
     	

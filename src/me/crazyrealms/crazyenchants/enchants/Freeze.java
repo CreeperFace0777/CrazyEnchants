@@ -6,12 +6,12 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.crazyrealms.crazyenchants.CrazyEnchants;
 import me.crazyrealms.crazyenchants.Enchant;
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 
@@ -25,11 +25,10 @@ public class Freeze extends Enchant implements Listener {
 	}
 	
 	@Override
-	public void playerHitEvent(EntityDamageByEntityEvent e) {
-		if (!(e.getDamager() instanceof Player)) return;
-		if (!(e.getEntity() instanceof Player)) return;
-		Player damager = (Player) e.getDamager();
-		Player entity = (Player) e.getEntity();
+	public void playerAttackedEntity(PlayerAttackedEntity e) {
+		if (!(e.getAttackedEntity() instanceof Player)) return;
+		Player damager = e.getPlayerAttacker();
+		Player entity = (Player) e.getAttackedEntity();
 		
 		int level = Enchant.getEnchants(damager.getItemInHand()).get(this);
 		
