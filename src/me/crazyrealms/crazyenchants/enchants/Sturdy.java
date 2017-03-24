@@ -1,5 +1,6 @@
 package me.crazyrealms.crazyenchants.enchants;
 
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
@@ -15,9 +16,8 @@ public class Sturdy extends Enchant {
 	}
 	
 	@Override
-	public void playerHitEvent(EntityDamageByEntityEvent e) {
-		if (!(e.getEntity() instanceof Player)) return;
-		Player player = (Player) e.getEntity();
+	public void playerAttackedEntity(PlayerAttackedEntity e) {
+		Player player = e.getPlayerAttacker();
 		
 		for (ItemStack equipment : player.getEquipment().getArmorContents()) {
 			if (equipment == null) continue;

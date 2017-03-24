@@ -1,5 +1,6 @@
 package me.crazyrealms.crazyenchants.enchants;
 
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -14,11 +15,11 @@ public class LifeSaver extends Enchant {
 	}
 	
 	@Override
-	public void playerHitEvent(EntityDamageByEntityEvent e) {
-		if (!(e.getDamager() instanceof Player)) return;
-		if (!(e.getEntity() instanceof Player)) return;
-		Player damager = (Player) e.getDamager();
-		Player entity = (Player) e.getEntity();
+	public void playerAttackedEntity(PlayerAttackedEntity e) {
+		if (!(e.getAttackedEntity() instanceof Player)) return;
+
+		Player damager = e.getPlayerAttacker();
+		Player entity = (Player) e.getAttackedEntity();
 		
 		if (damager.getHealth() < entity.getHealth()) { //If the damager has less health
 			double damagerOriginal = damager.getHealth(); //Health to be given to the entity

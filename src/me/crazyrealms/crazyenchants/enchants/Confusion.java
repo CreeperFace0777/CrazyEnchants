@@ -1,5 +1,6 @@
 package me.crazyrealms.crazyenchants.enchants;
 
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
@@ -16,9 +17,9 @@ public class Confusion extends Enchant {
 	}
 	
 	@Override
-	public void playerHitEvent(EntityDamageByEntityEvent e) {
-		if (!(e.getEntity() instanceof LivingEntity)) return; //Only Living Entities can have Potion Effects
-		LivingEntity entity = (LivingEntity) e.getEntity();
+	public void playerAttackedEntity(PlayerAttackedEntity e) {
+		if (!(e.getAttackedEntity() instanceof LivingEntity)) return; //Only Living Entities can have Potion Effects
+		LivingEntity entity = (LivingEntity) e.getAttackedEntity();
 		
 		entity.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 50, 0), true);
 	}

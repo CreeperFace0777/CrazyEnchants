@@ -15,66 +15,6 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import java.util.Random;
 
 public class EntityDamage implements Listener {
-
-    @EventHandler
-    public void playerHitEvent(EntityDamageByEntityEvent e) {
-        //If the damager isn't a player
-        if (e.getDamager() instanceof Player) {
-	        //Damager IS player
-	        Player p = (Player) e.getDamager();
-	        if (Enchant.getEnchantsOnPlayer(p) != null) {
-	            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-	                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-	                if (chance >= new Random().nextInt(100)) {
-	                    ench.playerAttackedEntity(new PlayerAttackedEntity(e));
-	                }
-	            }
-	        }
-        }
-        
-        if (e.getEntity() instanceof Player) {
-	        //Attacked Entity IS player
-	        Player p = (Player) e.getDamager();
-	        if (Enchant.getEnchantsOnPlayer(p) != null) {
-	            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-	                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-	                if (chance >= new Random().nextInt(100)) {
-	                    ench.playerDamaged(new PlayerDamaged(e));
-	                }
-	            }
-	        }
-        }
-    }
-
-    @EventHandler
-    public void genericDamage(EntityDamageEvent e) {
-        //If the damager isn't a player
-        if (!(e.getEntity() instanceof Player)) return;
-        //Damager IS player
-        Player p = (Player) e.getEntity();
-        if (Enchant.getEnchantsOnPlayer(p) != null) {
-            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-                if (chance >= new Random().nextInt(100)) {
-                    ench.playerDamaged(new PlayerDamaged(e));
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void playerDeathEvent(EntityDeathEvent e) {
-        Player p = e.getEntity().getKiller();
-        if (Enchant.getEnchantsOnPlayer(p) != null) {
-            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-                if (chance > new Random().nextInt(100)) {
-                	ench.entityDeathEvent(e);
-                }
-            }
-        }
-    }
-
     @EventHandler
     public void arrowHit(ProjectileHitEvent e) {
         if(!(e.getEntity().getShooter() instanceof Player)) return;
@@ -90,4 +30,63 @@ public class EntityDamage implements Listener {
             }
         }
     }
+
+    @EventHandler
+    public void entityDeathEvent(EntityDeathEvent e) {
+        if(!(e.getEntity() instanceof Player)) return;
+
+        Player p = (Player) e.getEntity();
+        if (Enchant.getEnchantsOnPlayer(p) != null) {
+            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                if (chance >= new Random().nextInt(100)) {
+                    ench.entityDeathEvent(e);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void playerAttackedEntity(PlayerAttackedEntity e) {
+        Player p = e.getPlayerAttacker();
+        if (Enchant.getEnchantsOnPlayer(p) != null) {
+            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                if (chance >= new Random().nextInt(100)) {
+                    ench.playerAttackedEntity(e);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void playerDamaged(PlayerDamaged e) {
+        Player p = e.getPlayer();
+        if (Enchant.getEnchantsOnPlayer(p) != null) {
+            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                if (chance >= new Random().nextInt(100)) {
+                    ench.playerDamaged(e);
+                }
+            }
+        }
+    }
+
+    /*
+    @EventHandler
+    public void arrowHit(ProjectileHitEvent e) {
+        if(!(e.getEntity().getShooter() instanceof Player)) return;
+
+        Player p = (Player) e.getEntity().getShooter();
+        if (Enchant.getEnchantsOnPlayer(p) != null) {
+            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                if (chance >= new Random().nextInt(100)) {
+                    ench.arrowHit(e);
+
+                }
+            }
+        }
+    }
+    */
 }
