@@ -18,7 +18,7 @@ public class LuckyOre extends Enchant {
 	}
 	
 	@Override
-	public void playerBreakBlockEvent(BlockBreakEvent e) {
+	public void playerBreakBlock(BlockBreakEvent e) {
 		Collection<ItemStack> newDrops = new ArrayList<ItemStack>();		
 		
 		newDrops = e.getBlock().getDrops(e.getPlayer().getItemInHand()); //Don't need a null check.

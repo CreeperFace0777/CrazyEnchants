@@ -2,6 +2,7 @@ package me.crazyrealms.crazyenchants;
 
 import com.mewin.WGCustomFlags.WGCustomFlagsPlugin;
 import me.crazyrealms.crazyenchants.commands.Enchanter;
+import me.crazyrealms.crazyenchants.enchants.Freeze;
 import me.crazyrealms.crazyenchants.listeners.BlockBreak;
 import me.crazyrealms.crazyenchants.listeners.EnchantAdd;
 import me.crazyrealms.crazyenchants.listeners.EntityDamage;
@@ -17,16 +18,10 @@ public class CrazyEnchants extends JavaPlugin {
     public static WGCustomFlagsPlugin wg;
 
     public void onEnable() {
-        Plugin plugin = getServer().getPluginManager().getPlugin("WGCustomFlags");
 
-        if (plugin == null || !(plugin instanceof WGCustomFlagsPlugin))
-        {
-            getLogger().severe("CrazyEnchants couldn't load as dependency plugins were not enabled");
-            setEnabled(false);
-        }
-
-        wg = (WGCustomFlagsPlugin) plugin;
-
+    	enableWGCustomFlags();
+    	Freeze.addMain(this);
+    	
         Enchanter enchanter = new Enchanter();
         Bukkit.getPluginCommand("enchanter").setExecutor(enchanter);
         Bukkit.getPluginManager().registerEvents(enchanter, this);
@@ -38,6 +33,19 @@ public class CrazyEnchants extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CheckEnchants(), 0, 5);
     }
 
+    private boolean enableWGCustomFlags() {
+        Plugin plugin = getServer().getPluginManager().getPlugin("WGCustomFlags");
+
+        if (plugin == null || !(plugin instanceof WGCustomFlagsPlugin)) {
+            getLogger().severe("CrazyEnchants couldn't load as dependency plugins were not enabled");
+            setEnabled(false);
+            return false;
+        }
+
+        wg = (WGCustomFlagsPlugin) plugin;
+        return true;
+    }
+    
     public static String getPrefix() {
         return prefix;
     }

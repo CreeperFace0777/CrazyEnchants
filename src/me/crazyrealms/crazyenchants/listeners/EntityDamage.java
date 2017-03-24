@@ -1,6 +1,9 @@
 package me.crazyrealms.crazyenchants.listeners;
 
 import me.crazyrealms.crazyenchants.Enchant;
+import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
+import me.crazyrealms.crazyenchants.customevents.PlayerDamaged;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,20 +19,30 @@ public class EntityDamage implements Listener {
     @EventHandler
     public void playerHitEvent(EntityDamageByEntityEvent e) {
         //If the damager isn't a player
-        if (!(e.getDamager() instanceof Player)) return;
-        //Damager IS player
-        Player p = (Player) e.getDamager();
-        if (Enchant.getEnchantsOnPlayer(p) != null) {
-            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-                if (chance >= 100) {
-                    ench.playerHitEvent(e);
-                    return;
-                }
-                if (chance > new Random().nextInt(100)) {
-                    ench.playerHitEvent(e);
-                }
-            }
+        if (e.getDamager() instanceof Player) {
+	        //Damager IS player
+	        Player p = (Player) e.getDamager();
+	        if (Enchant.getEnchantsOnPlayer(p) != null) {
+	            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+	                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+	                if (chance >= new Random().nextInt(100)) {
+	                    ench.playerAttackedEntity(new PlayerAttackedEntity(e));
+	                }
+	            }
+	        }
+        }
+        
+        if (e.getEntity() instanceof Player) {
+	        //Attacked Entity IS player
+	        Player p = (Player) e.getDamager();
+	        if (Enchant.getEnchantsOnPlayer(p) != null) {
+	            for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
+	                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+	                if (chance >= new Random().nextInt(100)) {
+	                    ench.playerDamaged(new PlayerDamaged(e));
+	                }
+	            }
+	        }
         }
     }
 
@@ -42,12 +55,8 @@ public class EntityDamage implements Listener {
         if (Enchant.getEnchantsOnPlayer(p) != null) {
             for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
                 int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-                if (chance >= 100) {
-                    ench.genericDamageEvent(e);
-                    return;
-                }
-                if (chance > new Random().nextInt(100)) {
-                    ench.genericDamageEvent(e);
+                if (chance >= new Random().nextInt(100)) {
+                    ench.playerDamaged(new PlayerDamaged(e));
                 }
             }
         }
@@ -58,13 +67,9 @@ public class EntityDamage implements Listener {
         Player p = e.getEntity().getKiller();
         if (Enchant.getEnchantsOnPlayer(p) != null) {
             for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-                if (chance >= 100) {
-                    ench.entityDeathEvent(e);
-                    return;
-                }
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
                 if (chance > new Random().nextInt(100)) {
-                    ench.entityDeathEvent(e);
+                	ench.entityDeathEvent(e);
                 }
             }
         }
@@ -77,13 +82,10 @@ public class EntityDamage implements Listener {
         Player p = (Player) e.getEntity().getShooter();
         if (Enchant.getEnchantsOnPlayer(p) != null) {
             for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
-                int chance = ench.getChance() + 5 * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
-                if (chance >= 100) {
-                    ench.arrowHitBlock(e);
-                    return;
-                }
-                if (chance > new Random().nextInt(100)) {
-                    ench.arrowHitBlock(e);
+                int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
+                if (chance >= new Random().nextInt(100)) {
+                    ench.arrowHit(e);
+
                 }
             }
         }

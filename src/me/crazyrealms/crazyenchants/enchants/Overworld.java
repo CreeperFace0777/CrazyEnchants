@@ -1,11 +1,11 @@
 package me.crazyrealms.crazyenchants.enchants;
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.crazyrealms.crazyenchants.Enchant;
+import me.crazyrealms.crazyenchants.customevents.PlayerDamaged;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 
@@ -16,9 +16,8 @@ public class Overworld extends Enchant {
 	}
 	
 	@Override
-	public void genericDamageEvent(EntityDamageEvent e) {
-		if (!(e.getEntity() instanceof Player)) return; //Not our player. Probably a pig. I hate pigs.
-		Player pl = (Player) e.getEntity();
+	public void playerDamaged(PlayerDamaged e) {
+		Player pl = (Player) e.getPlayer();
 		if (pl.getEquipment().getBoots() == null) return; //How did this activate if it can only go on boots, yet the boots are null? It's the illuminati, I tell ya!
 		int level = Enchant.getEnchants(pl.getEquipment().getBoots()).get(this); //Get Level
 		

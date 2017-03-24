@@ -1,10 +1,8 @@
 package me.crazyrealms.crazyenchants.enchants;
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-
 import me.crazyrealms.crazyenchants.Enchant;
+import me.crazyrealms.crazyenchants.customevents.PlayerDamaged;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 
@@ -16,19 +14,11 @@ public class Savior extends Enchant {
 	}
 	
 	@Override
-	public void genericDamageEvent(EntityDamageEvent e) {
-		if (!(e.getEntity() instanceof Player)) return; //Not a player, can't have savior.
-		Player pl = (Player) e.getEntity();
+	public void playerDamaged(PlayerDamaged e) {
+		Player pl = e.getPlayer();
 		
 		if (pl.getHealth()/pl.getMaxHealth() <= .20) { //Less than 20% health remaining, <= 2 full hearts.
 			pl.setHealth(pl.getMaxHealth());
 		}
 	}
-	
-	@Override
-	public void playerHitEvent(EntityDamageByEntityEvent e) {
-		genericDamageEvent(e);
-	}
-
-
 }

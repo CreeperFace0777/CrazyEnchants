@@ -1,6 +1,7 @@
 package me.crazyrealms.crazyenchants;
 
 
+import me.crazyrealms.crazyenchants.customevents.*;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.ChatColor;
@@ -90,14 +91,14 @@ public abstract class Enchant {
     }
 
 
-    //If an entity is damaged through non-entity means
-    public void genericDamageEvent(EntityDamageEvent e) {}
-    
-    //If an entity is hit with a projectile/melee combat.
-    public void playerHitEvent(EntityDamageByEntityEvent e) {}
+    //If a player is damaged, either naturally or through entities.
+    public void playerDamaged(PlayerDamaged e) {}
 
+    //When a player attacks an entity
+    public void playerAttackedEntity(PlayerAttackedEntity e) {}
+    
     //If the enchant is a tool enchant (block broken)
-    public void playerBreakBlockEvent(BlockBreakEvent e) {}
+    public void playerBreakBlock(BlockBreakEvent e) {}
 
     //If the enchant is always active
     public void alwaysActive(Player player) {}
@@ -105,11 +106,9 @@ public abstract class Enchant {
     //If an entity is killed.
     public void entityDeathEvent(EntityDeathEvent e) {}
 
-    //If a block is hit with a bow
-    public void arrowHitBlock(ProjectileHitEvent e) {}
-    
-    //When targeted by an entity
-    public void entityTarget(EntityTargetEvent e) {} 
+    //When a projectile hits a block
+    public void arrowHit(ProjectileHitEvent e) {}
+
     
     //Getters
     public String getName() {
