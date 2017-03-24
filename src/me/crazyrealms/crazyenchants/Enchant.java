@@ -108,6 +108,7 @@ public abstract class Enchant {
 
     //When a projectile hits a block
     public void arrowHit(ProjectileHitEvent e) {}
+
     
     //Getters
     public String getName() {

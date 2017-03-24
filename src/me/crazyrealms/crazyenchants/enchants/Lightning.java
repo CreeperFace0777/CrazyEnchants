@@ -22,4 +22,5 @@ public class Lightning extends Enchant {
 		e.getPlayer().damage(8);
 	}
 	
+
 }

@@ -6,6 +6,7 @@ import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -24,5 +25,6 @@ public class Toxic extends Enchant {
     	int level = Enchant.getEnchantsOnPlayer(damager).get(this);
     	
     	entity.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40*level, 1), true);
+
     }
 }

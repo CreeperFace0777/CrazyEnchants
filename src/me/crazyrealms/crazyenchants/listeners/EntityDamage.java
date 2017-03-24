@@ -85,6 +85,7 @@ public class EntityDamage implements Listener {
                 int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);
                 if (chance >= new Random().nextInt(100)) {
                     ench.arrowHit(e);
+
                 }
             }
         }
