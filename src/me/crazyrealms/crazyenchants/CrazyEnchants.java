@@ -34,6 +34,7 @@ public class CrazyEnchants extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new EnchantAdd(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CheckEnchants(), 0, 5);
     }
 

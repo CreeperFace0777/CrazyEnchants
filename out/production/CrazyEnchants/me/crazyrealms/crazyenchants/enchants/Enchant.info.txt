@@ -1,0 +1,5 @@
+-----!!!-----
+IMPORTANT
+
+In each enchants constructor make sure to set the name, max level, rarity etc using super method.
+What happens when an enchant activates is put into the respective methods. These methods are called in the main listener

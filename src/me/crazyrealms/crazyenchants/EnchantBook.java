@@ -95,10 +95,6 @@ public class EnchantBook {
         return new EnchantBook(new Random().nextInt(e.getMaxLevel()) + 1, e, new Random().nextInt(100) + 1, new Random().nextInt(100) + 1);
     }
 
-    public void addEnchant(ItemStack item) {
-        //TODO: ADD LORE TO THE ITEM
-    }
-
 
 
     //GETTERS
