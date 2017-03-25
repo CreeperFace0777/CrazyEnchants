@@ -32,7 +32,7 @@ public class Combo extends Enchant {
 		} else {
 			hitCounter.put(damagerPlayer.getUniqueId(), hitCounter.get(damagerPlayer.getUniqueId()) + 1); //Increase counter by 1
 		}
-		int level = Enchant.getEnchants(damagerPlayer.getItemInHand()).get(this); //Get
+		int level = Enchant.getHeldEnchants(damagerPlayer).get(this); //Get level
 		
 		double damage = e.getDamage();
 		damage = damage + (damage * level/6 * (1-(1/hitCounter.get(damagerPlayer.getUniqueId())))); //damage = damage + damage * 1/level * (1 - 1/hitCounter) - [ask me for an example!]

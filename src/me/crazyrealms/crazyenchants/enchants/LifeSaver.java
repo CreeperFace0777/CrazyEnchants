@@ -2,7 +2,6 @@ package me.crazyrealms.crazyenchants.enchants;
 
 import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
@@ -11,7 +10,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class LifeSaver extends Enchant {
 
 	public LifeSaver() {
-		super("Life Saver", 5, Rarity.LEGENDARY, new ItemSet[]{ItemSet.SWORD}, "Chance to give your enemies' health to you", 2, 2);
+		super("Life Saver", 5, Rarity.LEGENDARY, new ItemSet[]{ItemSet.SWORD}, "Chance to give your enemies' health to you", 1, 1);
 	}
 	
 	@Override

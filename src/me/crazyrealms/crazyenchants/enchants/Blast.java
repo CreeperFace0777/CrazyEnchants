@@ -17,7 +17,7 @@ public class Blast extends Enchant {
 	@Override
 	public void playerBreakBlock(BlockBreakEvent e) {
 		if (e.getPlayer().getItemInHand() == null) return; //Somehow this was called, even if player has no item? Whatever.
-		int level = Enchant.getEnchants(e.getPlayer().getItemInHand()).get(this); //Loop through item's custom enchants, return level.
+		int level = Enchant.getHeldEnchants(e.getPlayer()).get(this); //Loop through item's custom enchants, return level.
 		int size = 1 + (level * 2); //Size of the blast. Lv 1= 3x3, Lv2 = 5x5, Lv3 = 7x7 ***CHANGE IF NECESSARY***
 		
 		for (int x = -size; x < size; x++) { 		  //Loop through X coordinates

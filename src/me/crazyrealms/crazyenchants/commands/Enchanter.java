@@ -77,6 +77,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 20) { //Check if the player has at least 20 experience
                             player.setTotalExperience(player.getTotalExperience() - 20); //Take 20 away
                             player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.SIMPLE).getBook()); //Give them a simple book
+                            rarity = Rarity.SIMPLE;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
                             return;
@@ -86,6 +87,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 40) {
                             player.setTotalExperience(player.getTotalExperience() - 40);
                             player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.COMMON).getBook());
+                            rarity = Rarity.COMMON;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
                             return;
@@ -95,6 +97,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 2000) {
                             player.setTotalExperience(player.getTotalExperience() - 2000);
                             player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.RARE).getBook());
+                            rarity = Rarity.RARE;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
                             return;
@@ -104,6 +107,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 4000) {
                             player.setTotalExperience(player.getTotalExperience() - 4000);
                             player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.EPIC).getBook());
+                            rarity = Rarity.EPIC;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
                             return;
@@ -113,6 +117,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 10000) {
                             player.setTotalExperience(player.getTotalExperience() - 10000);
                             player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.LEGENDARY).getBook());
+                            rarity = Rarity.LEGENDARY;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
                             return;

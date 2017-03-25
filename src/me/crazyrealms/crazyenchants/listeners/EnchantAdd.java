@@ -22,8 +22,8 @@ public class EnchantAdd implements Listener {
 
     @EventHandler
     public void clickEvent(InventoryClickEvent e) {
-        if (!(e.getInventory().getHolder() instanceof Player)) return;
-        Player player = (Player) e.getInventory().getHolder();
+        if (!(e.getWhoClicked() instanceof Player)) return;
+        Player player = (Player) e.getWhoClicked();
         if (e.getInventory() == player.getInventory()) {
             //We know that the inventory is the players
             if (hasClicked.get(player) != null && hasClicked.get(player) == true) {
@@ -36,7 +36,7 @@ public class EnchantAdd implements Listener {
                         for (Material m : i.getItems())
                             if (e.getCurrentItem().getType() == m) {
                                 //If the item can be enchanted with the enchant the player just clicked it with
-                                List<String> lore = null;
+                                List<String> lore = e.getCurrentItem().getItemMeta().getLore();
                                 if (e.getCurrentItem().getItemMeta().getLore() != null) {
                                     boolean permFinding = true;
                                     int current = 0;
@@ -50,12 +50,11 @@ public class EnchantAdd implements Listener {
                                     if (lore.size() >= current) {
                                         if (isMax(lore, current)) {
                                             player.closeInventory();
-                                            player.sendMessage(CrazyEnchants.getPrefix() + "You have to many enchants on this item!");
+                                            player.sendMessage(CrazyEnchants.getPrefix() + "You have too many enchants on this item!");
                                             return;
                                         }
                                     }
 
-                                    lore = e.getCurrentItem().getItemMeta().getLore();
 
                                 } else lore = new ArrayList<>();
                                 EnchantBook enchBook = EnchantBook.getEnchantBook(item);

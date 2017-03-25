@@ -117,4 +117,8 @@ public class EnchantBook {
     public int getDestroy() {
         return destroy;
     }
+    
+    public Rarity getRarity() {
+    	return rarity;
+    }
 }

@@ -2,7 +2,6 @@ package me.crazyrealms.crazyenchants.enchants;
 
 import me.crazyrealms.crazyenchants.customevents.PlayerAttackedEntity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 

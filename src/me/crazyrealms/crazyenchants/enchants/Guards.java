@@ -6,10 +6,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.customentities.GuardGolem;
+
+import me.crazyrealms.crazyenchants.customevents.PlayerDamaged;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import me.crazyrealms.crazyenchants.enums.Rarity;
 
@@ -44,10 +45,9 @@ public class Guards extends Enchant {
 		}
 	}
 	
-	/*@Override
-	public void playerHitEvent(EntityDamageByEntityEvent e) {
-		if (!(e.getEntity() instanceof Player)) return;
-		Player entity = (Player) e.getEntity();
-	}*/
-	
+	@Override
+	public void playerDamaged(PlayerDamaged e) {
+		if (e.getAttacker() == null) return;
+		golems.add(new GuardGolem(e.getPlayer().getUniqueId())); //Constructor spawns golem
+	}
 }
