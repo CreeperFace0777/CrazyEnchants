@@ -30,7 +30,7 @@ public class Freeze extends Enchant implements Listener {
 		Player damager = e.getPlayerAttacker();
 		Player entity = (Player) e.getAttackedEntity();
 		
-		int level = Enchant.getEnchants(damager.getItemInHand()).get(this);
+		int level = Enchant.getHeldEnchants(damager).get(this);
 		
 		frozenPlayers.add(entity.getUniqueId()); //Set the player to be frozen
 		new BukkitRunnable() {

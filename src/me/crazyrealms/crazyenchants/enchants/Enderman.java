@@ -21,7 +21,7 @@ public class Enderman extends Enchant {
 	public void playerAttackedEntity(PlayerAttackedEntity e) {
 		Player player = (Player) e.getPlayerAttacker();
 		
-		int level = Enchant.getEnchants(player.getEquipment().getBoots()).get(this); //Get Level
+		int level = Enchant.getArmorEnchants(player).get(this); //Get Level
 		if ((int) (Math.random()*3) <= level) { //Since each level is more likely to activate, I have to limit the 1st and 2nd levels.
 		
 			Vector loc1 = e.getAttackedEntity().getLocation().toVector(); //Vector of location of Entity

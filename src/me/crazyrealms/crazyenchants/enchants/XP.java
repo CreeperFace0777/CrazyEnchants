@@ -15,7 +15,7 @@ public class XP extends Enchant {
     public void entityDeathEvent(EntityDeathEvent e) {
         //If the entity killed is a mob (Not a player or another entity such as experience)
         if(e.getEntity() instanceof Creature) {
-            e.setDroppedExp(e.getDroppedExp() + e.getDroppedExp()*(Enchant.getEnchantsOnPlayer(e.getEntity().getKiller()).get(this)/2));
+            e.setDroppedExp(e.getDroppedExp() + e.getDroppedExp()*(Enchant.getHeldEnchants(e.getEntity().getKiller()).get(this)/2));
         }
         
     }

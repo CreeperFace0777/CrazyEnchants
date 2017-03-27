@@ -25,6 +25,7 @@ public class CrazyEnchants extends JavaPlugin {
         Enchanter enchanter = new Enchanter();
         Bukkit.getPluginCommand("enchanter").setExecutor(enchanter);
         Bukkit.getPluginManager().registerEvents(enchanter, this);
+        Bukkit.getPluginManager().registerEvents(new Freeze(), this);
         Bukkit.getPluginManager().registerEvents(new BlockBreak(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);

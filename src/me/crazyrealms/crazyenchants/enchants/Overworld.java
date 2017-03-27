@@ -19,7 +19,7 @@ public class Overworld extends Enchant {
 	public void playerDamaged(PlayerDamaged e) {
 		Player pl = (Player) e.getPlayer();
 		if (pl.getEquipment().getBoots() == null) return; //How did this activate if it can only go on boots, yet the boots are null? It's the illuminati, I tell ya!
-		int level = Enchant.getEnchants(pl.getEquipment().getBoots()).get(this); //Get Level
+		int level = Enchant.getArmorEnchants(pl).get(this); //Get Level
 		
 		if (pl.getHealth()/pl.getMaxHealth() <= .20) { //Less than 20% health remaining, <= 2 full hearts.
 			pl.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 6, level-1), true); //Apply the regeneration effect, dependant on the level.

@@ -61,7 +61,7 @@ public abstract class Enchant {
     }
 
     //Events (These will not be registered in the enchant, but will be registered in a separate class. When the enchant is found, the method will be called from here):
-
+    
     public static Enchant getEnchantByName(String name) {
         for (Enchant enchant : enchants) {
             if (enchant.getName().equalsIgnoreCase(name)) {
@@ -90,6 +90,14 @@ public abstract class Enchant {
         }
         if (enchants.isEmpty()) return null;
         return enchants;
+    }
+    
+    public static Map<Enchant, Integer> getHeldEnchants(Player player) {
+    	return getEnchants(player.getItemInHand());
+    }
+    
+    public static Map<Enchant, Integer> getArmorEnchants(Player player) {
+    	return getEnchants(player.getEquipment().getArmorContents());
     }
 
     //Gets the enchants on the players armour and currently held item
@@ -151,18 +159,20 @@ public abstract class Enchant {
     public boolean isActive() {
         return isActive;
     }
-
-    public void setActive(boolean active) {
-        isActive = active;
+    
+    public boolean isStackable() {
+    	return stackable;
     }
 
 
     //Setters
-
     public int getChanceIncrease() {
         return chanceIncrease;
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }
 
 //TODO: KNOWN ISSUE: Can hit player with an item that has enchants (armor) other than a sword, and those enchants may used in a player attack event.

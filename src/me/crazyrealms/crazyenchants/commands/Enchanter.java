@@ -72,14 +72,11 @@ public class Enchanter implements CommandExecutor, Listener {
                 //If the player clicked on an actual item. The item MUST be an item frame as it's the only item in the inventory
                 short damage = item.getDurability();
                 Rarity rarity = null;
-                int playerLvl = player.getExpToLevel()*player.getExp()
                 switch (damage) {
                     case 7: //Simple
-                        
                         if (player.getTotalExperience() >= 200) { //Check if the player has at least 200 experience
                             player.setTotalExperience(player.getTotalExperience() - 200); //Take 200 away
                             player.getInventory().addItem(new EnchantBook(Rarity.SIMPLE).getBook()); //Give them a simple book
-                            rarity = Rarity.SIMPLE;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
@@ -109,7 +106,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 4000) {
                             player.setTotalExperience(player.getTotalExperience() - 4000);
                             player.getInventory().addItem(new EnchantBook(Rarity.EPIC).getBook());
-                            rarity = Rarity.RARE;
+                            rarity = Rarity.EPIC;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
