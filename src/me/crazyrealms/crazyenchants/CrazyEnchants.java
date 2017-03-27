@@ -54,12 +54,14 @@ public class CrazyEnchants extends JavaPlugin {
     private void buildEnchants() {
         new AntiLava();
         new Blast();
+        new Blind();
         new Combo();
         new Confusion();
         new Enderman();
         new Featherweight();
         new Freeze();
         new Guards();
+        new Glow();
         new Haste();
         new Humble();
         new Jump();
