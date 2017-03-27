@@ -10,7 +10,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Regain extends Enchant {
 
 	public Regain() {
-		super("Regain,", 4, Rarity.SIMPLE, new ItemSet[]{ItemSet.AXE}, "Chance to gain hunger when you attack a player", 10, 5);
+		super("Regain", 4, Rarity.SIMPLE, new ItemSet[]{ItemSet.AXE}, "Chance to gain hunger when you attack a player", 10, 5);
 	}
 	
 	@Override

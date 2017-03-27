@@ -2,6 +2,7 @@ package me.crazyrealms.crazyenchants.enums;
 
 import org.bukkit.Material;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Possible items an enchant can be enchanted on
@@ -16,16 +17,16 @@ public enum ItemSet {
     SHOVEL(Material.WOOD_SPADE, Material.IRON_SPADE, Material.STONE_SPADE, Material.GOLD_SPADE, Material.DIAMOND_SPADE),
     AXE(Material.WOOD_AXE, Material.IRON_AXE, Material.STONE_AXE, Material.GOLD_AXE, Material.DIAMOND_AXE),
     HOE(Material.WOOD_HOE, Material.IRON_HOE, Material.STONE_HOE, Material.GOLD_HOE, Material.DIAMOND_HOE),
-    ALL_TOOLS(PICKAXE, SHOVEL, AXE, HOE),
-    ALL_ARMOUR(HELMET, CHESTPLATE, LEGGINGS, BOOTS),
-    ALL_WEAPONS(SWORD, AXE);
+    ALL_TOOL(ItemSet.PICKAXE, ItemSet.SHOVEL, ItemSet.AXE, ItemSet.HOE),
+    ALL_ARMOUR(ItemSet.HELMET, ItemSet.CHESTPLATE, ItemSet.LEGGINGS, ItemSet.BOOTS),
+    ALL_WEAPON(ItemSet.SWORD, ItemSet.AXE);
 
 
-    private List<Material> items;
+    private List<Material> items = new ArrayList<>();
 
-    ItemSet(Material... items) {
-        for (Material item : items) {
-            this.items.add(item);
+    ItemSet(Material... itemss) {
+        for (Material item : itemss) {
+            items.add(item);
         }
     }
 

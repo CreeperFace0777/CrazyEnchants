@@ -76,7 +76,7 @@ public abstract class Enchant {
         //TODO: ADD STACKABLE COMPATIBILITY
         Map<Enchant, Integer> enchants = new HashMap<>();
         for (ItemStack item : items) {
-            if (item != null) continue;
+            if (item == null) continue;
             if (item.hasItemMeta()) {
                 if (!item.getItemMeta().hasLore()) continue;
                 List<String> lore = item.getItemMeta().getLore();

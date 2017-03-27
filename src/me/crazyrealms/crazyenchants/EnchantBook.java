@@ -33,8 +33,8 @@ public class EnchantBook {
         ItemMeta meta = book.getItemMeta();
         meta.setDisplayName(ChatColor.RESET + "" + enchant.getRarity().getRarityColor() + "" + ChatColor.UNDERLINE + enchant.getName() + " " + Utils.intToRomanNumeral(level));
         List<String> lore = new ArrayList<>();
-        lore.set(0, ChatColor.GREEN + "" + success + "% Success Rate");
-        lore.set(1, ChatColor.RED + "" + destroy + "% Destroy Rate");
+        lore.add(0, ChatColor.GREEN + "" + success + "% Success Rate");
+        lore.add(1, ChatColor.RED + "" + destroy + "% Destroy Rate");
         //Format the description so that it doesn't go off page
         lore.addAll(Utils.loreLineFormat(enchant.getDescription(), ChatColor.YELLOW));
         //If the enchant can go on more than 1 thing
@@ -48,10 +48,10 @@ public class EnchantBook {
                 items = items.substring(0, items.length() - 2);
             }
             //Turn the first enum from all caps to first letter capital
-            lore.add(ChatColor.GRAY + Utils.camelCase(items) + " Enchantment");
+            lore.add(ChatColor.GRAY + Utils.camelCase(items).replaceAll("_", " ") + " Enchantment");
         } else {
             //Turn the enum from all caps to first letter capital
-            lore.add(ChatColor.GRAY + Utils.camelCase(enchant.getItemSet()[0].toString()) + " Enchantment");
+            lore.add(ChatColor.GRAY + Utils.camelCase(enchant.getItemSet()[0].toString()).replaceAll("_", " ") + "s Enchantment");
         }
 
         lore.add(ChatColor.DARK_AQUA + "Max Level: " + ChatColor.YELLOW + enchant.getMaxLevel());
@@ -66,7 +66,7 @@ public class EnchantBook {
         meta.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + " Enchantment Book (Right Click)");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RESET + "" + ChatColor.GRAY + "Right Click to receive a random");
-        lore.add(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + ChatColor.RESET + " enchantment");
+        lore.add(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + ChatColor.RESET + ChatColor.GRAY +" enchantment");
         meta.setLore(lore);
         book.setItemMeta(meta);
     }
@@ -90,8 +90,8 @@ public class EnchantBook {
     }
 
     public static EnchantBook getRandomBook(Rarity rarity) {
-        Enchant e = (Enchant) Utils.pickRandom(Enchant.enchants);
-        if (e.getRarity() != rarity) getRandomBook(rarity);
+        Enchant e = (Enchant) Utils.pickRandom(Enchant.enchants.toArray());
+        if (e.getRarity() != rarity) return(getRandomBook(rarity));
         return new EnchantBook(new Random().nextInt(e.getMaxLevel()) + 1, e, new Random().nextInt(100) + 1, new Random().nextInt(100) + 1);
     }
 

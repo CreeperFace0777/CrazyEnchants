@@ -69,9 +69,13 @@ public class Utils {
     //Splits the string into multiple lines so the lore isn't too long (Retains ChatColor)
     public static List<String> loreLineFormat(String string, ChatColor color) {
         List<String> newString = new ArrayList<>();
-        while (string.length() >= 30) {
-            newString.add(color + string.substring(0, 30));
-            string = string.substring(30, string.length());
+        while(string.contains(" ")) {
+            StringBuilder sb = new StringBuilder();
+            for(String a :string.split(" ", 4)) {
+                sb.append(color + a + " ");
+            }
+            newString.add(sb.toString().trim());
+            string = string.split(" ", 5)[string.split(" ", 5).length-1];
         }
 
         return newString;
@@ -108,6 +112,7 @@ public class Utils {
     }
 
     public static Object pickRandom(Object... objects) {
+        if(objects.length == 0) return null;
         return objects[new Random().nextInt(objects.length)];
     }
 

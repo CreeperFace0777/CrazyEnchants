@@ -52,7 +52,7 @@ public class Enchanter implements CommandExecutor, Listener {
         ItemStack common = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5), ChatColor.GREEN + "Common Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "400EXP"});
         ItemStack rare = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 3), ChatColor.BLUE + "Rare Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "2000EXP"});
         ItemStack epic = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 4), ChatColor.YELLOW + "Epic Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "4000EXP"});
-        ItemStack legendary = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1), ChatColor.GOLD + "Legendary Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "10000EPX"});
+        ItemStack legendary = Utils.createItem(new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1), ChatColor.GOLD + "Legendary Enchant", new String[]{ChatColor.AQUA + "" + ChatColor.BOLD + "COST " + ChatColor.WHITE + "10000EXP"});
 
         inventory.setItem(2, simple);
         inventory.setItem(3, common);
@@ -72,54 +72,60 @@ public class Enchanter implements CommandExecutor, Listener {
                 //If the player clicked on an actual item. The item MUST be an item frame as it's the only item in the inventory
                 short damage = item.getDurability();
                 Rarity rarity = null;
+                int playerLvl = player.getExpToLevel()*player.getExp()
                 switch (damage) {
                     case 7: //Simple
-                        if (player.getTotalExperience() >= 20) { //Check if the player has at least 20 experience
-                            player.setTotalExperience(player.getTotalExperience() - 20); //Take 20 away
-                            player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.SIMPLE).getBook()); //Give them a simple book
+                        
+                        if (player.getTotalExperience() >= 200) { //Check if the player has at least 200 experience
+                            player.setTotalExperience(player.getTotalExperience() - 200); //Take 200 away
+                            player.getInventory().addItem(new EnchantBook(Rarity.SIMPLE).getBook()); //Give them a simple book
+                            rarity = Rarity.SIMPLE;
                         } else {
-                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
+                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
                         }
                         break;
                     case 5: //Common
-                        if (player.getTotalExperience() >= 40) {
-                            player.setTotalExperience(player.getTotalExperience() - 40);
-                            player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.COMMON).getBook());
+                        if (player.getTotalExperience() >= 400) {
+                            player.setTotalExperience(player.getTotalExperience() - 400);
+                            player.getInventory().addItem(new EnchantBook(Rarity.COMMON).getBook());
+                            rarity = Rarity.COMMON;
                         } else {
-                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
+                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
                         }
                         break;
                     case 3: //Rare
                         if (player.getTotalExperience() >= 2000) {
                             player.setTotalExperience(player.getTotalExperience() - 2000);
-                            player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.RARE).getBook());
+                            player.getInventory().addItem(new EnchantBook(Rarity.RARE).getBook());
+                            rarity = Rarity.RARE;
                         } else {
-                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
+                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
                         }
                         break;
                     case 4: //Epic
                         if (player.getTotalExperience() >= 4000) {
                             player.setTotalExperience(player.getTotalExperience() - 4000);
-                            player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.EPIC).getBook());
+                            player.getInventory().addItem(new EnchantBook(Rarity.EPIC).getBook());
+                            rarity = Rarity.RARE;
                         } else {
-                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
+                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
                         }
                         break;
                     case 1: //Legendary
                         if (player.getTotalExperience() >= 10000) {
                             player.setTotalExperience(player.getTotalExperience() - 10000);
-                            player.getInventory().addItem(EnchantBook.getRandomBook(Rarity.LEGENDARY).getBook());
+                            player.getInventory().addItem(new EnchantBook(Rarity.LEGENDARY).getBook());
+                            rarity = Rarity.LEGENDARY;
                         } else {
-                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience levels to buy this!");
+                            player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;
                         }
                         break;
                 }
-                player.closeInventory();
                 player.sendMessage(CrazyEnchants.getPrefix() + "You have been given a " + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + ChatColor.GRAY + " book");
             }
         }

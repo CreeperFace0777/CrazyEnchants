@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 public class Haste extends Enchant {
 
     public Haste() {
-        super("Haste", 3, Rarity.SIMPLE, new ItemSet[]{ItemSet.ALL_TOOLS}, "Gives the haste effect to the player", 100, 0, true);
+        super("Haste", 3, Rarity.SIMPLE, new ItemSet[]{ItemSet.ALL_TOOL}, "Gives the haste effect to the player", 100, 0, true);
     }
 
     @Override
