@@ -118,8 +118,8 @@ public class EnchantAdd implements Listener {
                         for (Material m : it.getItems()) {
                             if (item.getType().equals(m)) {
                                 //If the item they clicked on can be enchanted
-                                List<String> lore = null;
-                                if (item != null) {
+                                List<String> lore = item.getItemMeta().getLore();
+                                if (lore != null) {
                                     boolean permFinding = true;
                                     int current = 0;
                                     //Find how many enchants can be on one item for that player;
@@ -139,7 +139,7 @@ public class EnchantAdd implements Listener {
 
                                     lore = item.getItemMeta().getLore();
 
-                                } else lore = new ArrayList<>();
+                                } 
                                 EnchantBook enchBook = EnchantBook.getEnchantBook(item);
                                 //Add the enchant to item if the success is done.
                                 if(enchBook.getSuccess() == 100 || enchBook.getSuccess() >= new Random().nextInt(100)) {

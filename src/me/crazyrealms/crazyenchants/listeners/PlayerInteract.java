@@ -20,7 +20,7 @@ import java.util.List;
 public class PlayerInteract implements Listener {
     @EventHandler
     public void playerInteractEvent(PlayerInteractEvent e) {
-        if (e.getItem() == null || e.getItem().getType() != Material.BOOK)
+        if (e.getItem() == null && e.getItem().getType() != Material.BOOK)
             return;
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             // ^^ Checks if the the player right clicked, and the item is a book
