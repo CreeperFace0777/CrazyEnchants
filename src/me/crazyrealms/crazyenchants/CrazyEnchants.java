@@ -50,6 +50,7 @@ public class CrazyEnchants extends JavaPlugin {
         return prefix;
     }
 
+    //Probably a better way of doing this.
     private void buildEnchants() {
         new AntiLava();
         new Blast();
