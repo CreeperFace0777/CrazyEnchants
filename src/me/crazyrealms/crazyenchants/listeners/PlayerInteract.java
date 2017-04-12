@@ -13,6 +13,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -41,12 +42,22 @@ public class PlayerInteract implements Listener {
                 if (ChatColor.stripColor(item.getItemMeta().getDisplayName()).split(" ", 2)[1].equalsIgnoreCase("Enchantment Book (Right Click)"))
 
                     if (item.getItemMeta().hasLore()) {
-
                         List<String> lore = item.getItemMeta().getLore();
                         if (ChatColor.stripColor(lore.get(0)).equalsIgnoreCase("Right Click to receive a random")) {
-
-                            item.setAmount(item.getAmount() - 1);
                             e.getPlayer().getInventory().addItem(EnchantBook.getRandomBook(Rarity.valueOf(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0]).toUpperCase())).getBook());
+                            Rarity rarity = Rarity.fromString(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0]));
+                            ItemMeta itemm = item.getItemMeta();
+                            itemm.setDisplayName("Remove");
+                            item.setItemMeta(itemm);
+
+                            if(item.getAmount() == 1) {
+                                e.getPlayer().getInventory().remove(item);
+                            } else {
+                                item.setAmount(item.getAmount() - 1);
+                                itemm.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + " Enchantment Book " + ChatColor.GRAY + "(Right Click)");
+                                item.setItemMeta(itemm);
+                            }
+
                             Firework f = e.getPlayer().getWorld().spawn(e.getPlayer().getLocation(), Firework.class);
                             FireworkMeta meta = f.getFireworkMeta();
                             meta.addEffect(FireworkEffect.builder()
@@ -62,6 +73,13 @@ public class PlayerInteract implements Listener {
                     } else return;
 
             }
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BukkitRunnable() {
+                @Override
+                public void run() {
+                    playerMap.replace(e.getPlayer(), false);
+                }
+            }, 10);
+        } else {
             Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BukkitRunnable() {
                 @Override
                 public void run() {
