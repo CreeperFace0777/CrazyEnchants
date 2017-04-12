@@ -28,7 +28,7 @@ public class EnchantAdd implements Listener {
         if (!(e.getWhoClicked() instanceof Player)) return;
         Player player = (Player) e.getWhoClicked();
         player.sendMessage("1");
-        if (e.getView().equals(player.getInventory())) {
+        if (e.getClickedInventory().equals(player.getInventory())) {
             player.sendMessage("2");
             //We know that the inventory is the players
             if (hasClicked.get(player) != null && hasClicked.get(player) == true) {
@@ -41,7 +41,6 @@ public class EnchantAdd implements Listener {
                     for (ItemSet i : enchant.getItemSet())
                         for (Material m : i.getItems())
                             if (e.getCurrentItem().getType() == m) {
-                                player.sendMessage("5");
                                 //If the item can be enchanted with the enchant the player just clicked it with
                                 List<String> lore = e.getCurrentItem().getItemMeta().getLore();
                                 if (e.getCurrentItem().getItemMeta().getLore() != null) {
@@ -64,22 +63,28 @@ public class EnchantAdd implements Listener {
 
 
                                 } else lore = new ArrayList<>();
-                                player.sendMessage("5");
                                 EnchantBook enchBook = EnchantBook.getEnchantBook(item);
                                 //Add the enchant to item if the success is done.
                                 if(enchBook.getSuccess() == 100 || enchBook.getSuccess() >= new Random().nextInt(100)) {
+                                    player.sendMessage("Done");
                                     List<String> lorea;
                                     if (e.getCurrentItem().getItemMeta().hasLore()) lorea = e.getCurrentItem().getItemMeta().getLore();
                                     else lorea = new ArrayList<>();
                                     lorea.add(enchBook.getEnchant().getRarity().getRarityColor() + enchBook.getEnchant().getName() + " " + Utils.intToRomanNumeral(enchBook.getLevel()));
-                                    e.getCurrentItem().getItemMeta().setLore(lorea);
+                                    ItemMeta meta = e.getCurrentItem().getItemMeta();
+                                    meta.setLore(lorea);
+                                    e.getCurrentItem().setItemMeta(meta);
                                     e.getWhoClicked().getInventory().remove(item);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
                                     return;
                                 } else if(enchBook.getDestroy() == 100 || enchBook.getDestroy() >= new Random().nextInt(100)) {
+                                    player.sendMessage("Done");
                                     e.getWhoClicked().getInventory().remove(e.getCurrentItem());
                                     e.getWhoClicked().getInventory().remove(item);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
+                                } else {
+                                    player.sendMessage("Done");
+                                    e.getWhoClicked().getInventory().remove(item);
                                 }
                             }
 
