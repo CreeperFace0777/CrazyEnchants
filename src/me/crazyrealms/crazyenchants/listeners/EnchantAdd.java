@@ -5,8 +5,11 @@ import me.crazyrealms.crazyenchants.Enchant;
 import me.crazyrealms.crazyenchants.EnchantBook;
 import me.crazyrealms.crazyenchants.Utils;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -74,6 +77,17 @@ public class EnchantAdd implements Listener {
                                     ItemMeta meta = e.getCurrentItem().getItemMeta();
                                     meta.setLore(lorea);
                                     e.getCurrentItem().setItemMeta(meta);
+                                    net.minecraft.server.v1_8_R3.ItemStack nmsStack = CraftItemStack.asNMSCopy(e.getCurrentItem());
+                                    NBTTagCompound tag = null;
+                                    if (!nmsStack.hasTag()) {
+                                        tag = new NBTTagCompound();
+                                        nmsStack.setTag(tag);
+                                    }
+                                    if (tag == null) tag = nmsStack.getTag();
+                                    NBTTagList ench = new NBTTagList();
+                                    tag.set("ench", ench);
+                                    nmsStack.setTag(tag);
+                                    e.setCurrentItem( CraftItemStack.asCraftMirror(nmsStack));
                                     e.getWhoClicked().getInventory().remove(item);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
                                     return;
