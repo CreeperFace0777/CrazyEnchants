@@ -9,7 +9,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Savior extends Enchant {
 
 	public Savior() {
-		super("Savior", 4, Rarity.LEGENDARY, new ItemSet[]{ItemSet.HELMET}, "Chance to heal when low on health", 10, 5, true);
+		super("Savior", 4, Rarity.LEGENDARY, new ItemSet[]{ItemSet.HELMET}, "Chance to heal when low on health", 10, 5, false, true);
 
 	}
 	

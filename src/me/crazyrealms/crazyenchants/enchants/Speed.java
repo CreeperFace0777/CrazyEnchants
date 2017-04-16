@@ -14,7 +14,7 @@ public class Speed extends Enchant {
     }
 
     public void alwaysActive(Player player) {
-        PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, 6, Enchant.getEnchantsOnPlayer(player).get(this));
+        PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, 60, Enchant.getEnchantsOnPlayer(player).get(this)-1);
         player.addPotionEffect(speed);
     }
 }

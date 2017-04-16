@@ -15,7 +15,7 @@ public class Haste extends Enchant {
 
     @Override
     public void alwaysActive(Player player) {
-        PotionEffect haste = new PotionEffect(PotionEffectType.FAST_DIGGING, 6, Enchant.getEnchantsOnPlayer(player).get(this));
+        PotionEffect haste = new PotionEffect(PotionEffectType.FAST_DIGGING, 60, Enchant.getEnchantsOnPlayer(player).get(this)-1);
         player.addPotionEffect(haste);
     }
 

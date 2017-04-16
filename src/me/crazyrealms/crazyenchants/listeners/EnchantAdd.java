@@ -30,14 +30,11 @@ public class EnchantAdd implements Listener {
     public void clickEvent(InventoryClickEvent e) {
         if (!(e.getWhoClicked() instanceof Player)) return;
         Player player = (Player) e.getWhoClicked();
-        player.sendMessage("1");
         if (e.getClickedInventory().equals(player.getInventory())) {
-            player.sendMessage("2");
             //We know that the inventory is the players
             if (hasClicked.get(player) != null && hasClicked.get(player) == true) {
-                player.sendMessage("3");
                 hasClicked.replace(player, false);
-                ItemStack item = oldItem.get(player);
+                final ItemStack item = oldItem.get(player);
                 oldItem.remove(player);
                 Enchant enchant = Enchant.getEnchantByName(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0]));
                 if (enchant != null) {
@@ -69,7 +66,6 @@ public class EnchantAdd implements Listener {
                                 EnchantBook enchBook = EnchantBook.getEnchantBook(item);
                                 //Add the enchant to item if the success is done.
                                 if(enchBook.getSuccess() == 100 || enchBook.getSuccess() >= new Random().nextInt(100)) {
-                                    player.sendMessage("Done");
                                     List<String> lorea;
                                     if (e.getCurrentItem().getItemMeta().hasLore()) lorea = e.getCurrentItem().getItemMeta().getLore();
                                     else lorea = new ArrayList<>();
@@ -92,12 +88,10 @@ public class EnchantAdd implements Listener {
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
                                     return;
                                 } else if(enchBook.getDestroy() == 100 || enchBook.getDestroy() >= new Random().nextInt(100)) {
-                                    player.sendMessage("Done");
                                     e.getWhoClicked().getInventory().remove(e.getCurrentItem());
                                     e.getWhoClicked().getInventory().remove(item);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
                                 } else {
-                                    player.sendMessage("Done");
                                     e.getWhoClicked().getInventory().remove(item);
                                 }
                             }
