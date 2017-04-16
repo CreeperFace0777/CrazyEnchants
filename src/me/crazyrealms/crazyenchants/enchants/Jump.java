@@ -17,6 +17,6 @@ public class Jump extends Enchant {
 	@Override
 	public void alwaysActive(Player player) {
 		int level = Enchant.getArmorEnchants(player).get(this);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 6, level-1), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 60, level-1), true);
 	}
 }

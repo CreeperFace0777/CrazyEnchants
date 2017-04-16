@@ -63,7 +63,7 @@ public class EnchantBook {
         this.rarity = rarity;
 
         ItemMeta meta = book.getItemMeta();
-        meta.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + " Enchantment Book (Right Click)");
+        meta.setDisplayName(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + " Enchantment Book " + ChatColor.GRAY + "(Right Click)");
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RESET + "" + ChatColor.GRAY + "Right Click to receive a random");
         lore.add(ChatColor.RESET + "" + rarity.getRarityColor() + Utils.camelCase(rarity.toString()) + ChatColor.RESET + ChatColor.GRAY +" enchantment");

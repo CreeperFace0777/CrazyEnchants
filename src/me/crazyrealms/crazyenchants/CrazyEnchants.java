@@ -27,10 +27,9 @@ public class CrazyEnchants extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(enchanter, this);
         Bukkit.getPluginManager().registerEvents(new Freeze(), this);
         Bukkit.getPluginManager().registerEvents(new BlockBreak(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteract(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new EnchantAdd(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CheckEnchants(), 0, 5);
     }
 
@@ -51,6 +50,7 @@ public class CrazyEnchants extends JavaPlugin {
         return prefix;
     }
 
+    //Probably a better way of doing this.
     private void buildEnchants() {
         new AntiLava();
         new Blast();

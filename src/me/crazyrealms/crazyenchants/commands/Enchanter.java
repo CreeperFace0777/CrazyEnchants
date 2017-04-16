@@ -77,6 +77,7 @@ public class Enchanter implements CommandExecutor, Listener {
                         if (player.getTotalExperience() >= 200) { //Check if the player has at least 200 experience
                             player.setTotalExperience(player.getTotalExperience() - 200); //Take 200 away
                             player.getInventory().addItem(new EnchantBook(Rarity.SIMPLE).getBook()); //Give them a simple book
+                            rarity = Rarity.SIMPLE;
                         } else {
                             player.sendMessage(CrazyEnchants.getPrefix() + ChatColor.RED + "You don't have enough experience TotalExperiences to buy this!");
                             return;

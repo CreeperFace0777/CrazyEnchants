@@ -40,8 +40,8 @@ public abstract class Enchant {
     }
 
     //Runs for new enchants
-    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease, boolean stackable) {
-        this(name, maxLevel, rarity, itemSet, description, chance, chanceIncrease, false, stackable);
+    public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease, boolean active) {
+        this(name, maxLevel, rarity, itemSet, description, chance, chanceIncrease, active, false);
     }
 
     public Enchant(String name, int maxLevel, Rarity rarity, ItemSet[] itemSet, String description, int chance, int chanceIncrease, boolean active, boolean stackable) {
