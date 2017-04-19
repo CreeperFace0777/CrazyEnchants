@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 
 //Chance of an enchant appearing when you open a book.
 public enum Rarity {
-    SIMPLE(ChatColor.WHITE), COMMON(ChatColor.GREEN), RARE(ChatColor.BLUE), EPIC(ChatColor.YELLOW), LEGENDARY(ChatColor.GOLD);
+    SIMPLE(ChatColor.GRAY), COMMON(ChatColor.GREEN), RARE(ChatColor.BLUE), EPIC(ChatColor.YELLOW), LEGENDARY(ChatColor.GOLD);
 
     ChatColor rarityColor;
 

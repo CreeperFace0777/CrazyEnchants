@@ -7,8 +7,7 @@ import me.crazyrealms.crazyenchants.Utils;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagList;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -49,8 +48,8 @@ public class EnchantAdd implements Listener {
                                     //Find how many enchants can be on one item for that player;
                                     while (permFinding) {
                                         if (player.hasPermission("crazyenchants.lore." + current)) {
-                                            permFinding = false;
-                                        } else current++;
+                                            current++;
+                                        } else permFinding = false;
                                     }
                                     //Current is now equal to the max amount of enchants that player is allowed on one item.
                                     if (lore.size() >= current) {
@@ -85,11 +84,14 @@ public class EnchantAdd implements Listener {
                                     nmsStack.setTag(tag);
                                     e.setCurrentItem( CraftItemStack.asCraftMirror(nmsStack));
                                     e.getWhoClicked().getInventory().remove(item);
+                                    e.getWhoClicked().playEffect(EntityEffect.VILLAGER_HAPPY);
+                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.ARROW_HIT, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
                                     return;
                                 } else if(enchBook.getDestroy() == 100 || enchBook.getDestroy() >= new Random().nextInt(100)) {
                                     e.getWhoClicked().getInventory().remove(e.getCurrentItem());
                                     e.getWhoClicked().getInventory().remove(item);
+                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.ARROW_HIT, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
                                 } else {
                                     e.getWhoClicked().getInventory().remove(item);
@@ -121,42 +123,34 @@ public class EnchantAdd implements Listener {
         return false;
     }
 
+//
 //    @EventHandler
 //    public void playerDragItemEvent(InventoryDragEvent e) {
 //        if (!(e.getInventory().getHolder() instanceof Player)) return;
 //        Player player = (Player) e.getInventory().getHolder();
-//        player.sendMessage("Established Player");
-//        if (e.getView() == player.getInventory()) {
-//            player.sendMessage("Is Inventory");
+//        if (e.getInventory() == player.getInventory()) {
 //            ItemStack book = e.getOldCursor(); //The enchant book*
 //            ItemStack item = e.getCursor(); //The item to add enchants to
 //            if(book != null || item != null) {
-//                player.sendMessage("Not Null");
 //                EnchantBook enchantBook = EnchantBook.getEnchantBook(book); //Test to see if the item dragged was a enchant book
 //                if (enchantBook != null) {
-//                    player.sendMessage("Is Enchant");
 //                    Enchant enchant = enchantBook.getEnchant();
 //                    for (ItemSet it : enchant.getItemSet())
 //                        for (Material m : it.getItems()) {
 //                            if (item.getType().equals(m)) {
 //                                //If the item they clicked on can be enchanted
-//                                player.sendMessage("Can Enchant");
-//                                List<String> lore = null;
-//                                if (item != null) {
-//                                    player.sendMessage("Not Null");
+//                                List<String> lore = item.getItemMeta().getLore();
+//                                if (lore != null) {
 //                                    boolean permFinding = true;
 //                                    int current = 0;
 //                                    //Find how many enchants can be on one item for that player;
-//                                    player.sendMessage("Enchants Int");
 //                                    while (permFinding) {
 //                                        if (player.hasPermission("crazyenchants.lore." + current)) {
 //                                            permFinding = false;
 //                                        } else current++;
 //                                    }
-//                                    player.sendMessage("" + current);
 //                                    //Current is now equal to the max amount of enchants that player is allowed on one item.
 //                                    if (lore.size() >= current) {
-//                                        player.sendMessage("Is Max");
 //                                        if (isMax(lore, current)) {
 //                                            player.closeInventory();
 //                                            player.sendMessage(CrazyEnchants.getPrefix() + "You have to many enchants on this item!");
@@ -166,12 +160,10 @@ public class EnchantAdd implements Listener {
 //
 //                                    lore = item.getItemMeta().getLore();
 //
-//                                } else lore = new ArrayList<>();
-//                                player.sendMessage("Isn't Max");
+//                                }
 //                                EnchantBook enchBook = EnchantBook.getEnchantBook(item);
 //                                //Add the enchant to item if the success is done.
 //                                if(enchBook.getSuccess() == 100 || enchBook.getSuccess() >= new Random().nextInt(100)) {
-//                                    player.sendMessage("Adding Enchant #1");
 //                                    List<String> lorea;
 //                                    if (item.getItemMeta().hasLore()) lorea = item.getItemMeta().getLore();
 //                                    else lorea = new ArrayList<>();
@@ -179,7 +171,6 @@ public class EnchantAdd implements Listener {
 //                                    item.getItemMeta().setLore(lorea);
 //                                    for(ItemStack i : e.getWhoClicked().getInventory().getContents()) {
 //                                        if(i.equals(book)) {
-//                                            player.sendMessage("Removing");
 //                                            ItemMeta im = i.getItemMeta();
 //                                            List<String> newLore = new ArrayList<>();
 //                                            newLore.add("Remove Item");
@@ -205,4 +196,5 @@ public class EnchantAdd implements Listener {
 //
 //        }
 //    }
+
 }

@@ -20,6 +20,7 @@ public class Guards extends Enchant {
 	
 	public Guards() {
 		super("Guards", 10, Rarity.EPIC, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to spawn multiple iron golems that will attack enemies around the player", 100, 1);
+
 	}
 	
 	@Override
