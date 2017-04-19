@@ -31,9 +31,9 @@ public class EntityDamage implements Listener {
 
     @EventHandler
     public void entityDeathEvent(EntityDeathEvent e) {
-        if(!(e.getEntity() instanceof Player)) return;
+        if(!(e.getEntity().getKiller() instanceof Player)) return;
 
-        Player p = (Player) e.getEntity();
+        Player p = e.getEntity().getKiller();
         if (Enchant.getEnchantsOnPlayer(p) != null) {
             for (Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
                 int chance = ench.getChance() + ench.getChanceIncrease() * (Enchant.getEnchantsOnPlayer(p).get(ench) - 1);

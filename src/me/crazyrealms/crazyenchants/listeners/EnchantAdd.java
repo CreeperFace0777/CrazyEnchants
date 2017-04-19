@@ -7,8 +7,7 @@ import me.crazyrealms.crazyenchants.Utils;
 import me.crazyrealms.crazyenchants.enums.ItemSet;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagList;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -49,8 +48,8 @@ public class EnchantAdd implements Listener {
                                     //Find how many enchants can be on one item for that player;
                                     while (permFinding) {
                                         if (player.hasPermission("crazyenchants.lore." + current)) {
-                                            permFinding = false;
-                                        } else current++;
+                                            current++;
+                                        } else permFinding = false;
                                     }
                                     //Current is now equal to the max amount of enchants that player is allowed on one item.
                                     if (lore.size() >= current) {
@@ -85,11 +84,14 @@ public class EnchantAdd implements Listener {
                                     nmsStack.setTag(tag);
                                     e.setCurrentItem( CraftItemStack.asCraftMirror(nmsStack));
                                     e.getWhoClicked().getInventory().remove(item);
+                                    e.getWhoClicked().playEffect(EntityEffect.VILLAGER_HAPPY);
+                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.ARROW_HIT, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
                                     return;
                                 } else if(enchBook.getDestroy() == 100 || enchBook.getDestroy() >= new Random().nextInt(100)) {
                                     e.getWhoClicked().getInventory().remove(e.getCurrentItem());
                                     e.getWhoClicked().getInventory().remove(item);
+                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.ARROW_HIT, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
                                 } else {
                                     e.getWhoClicked().getInventory().remove(item);

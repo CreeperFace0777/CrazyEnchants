@@ -16,6 +16,14 @@ public class Glow extends Enchant {
 
 	@Override
 	public void alwaysActive(Player player) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 6, 0), true);
+		for(PotionEffect pot : player.getActivePotionEffects()) {
+			if(pot.getType() == PotionEffectType.NIGHT_VISION) {
+				if(pot.getDuration() <= 15)
+				player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 350, 0), true);
+				else return;
+			}
+		}
+
+		player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 350, 0), true);
 	}
 }
