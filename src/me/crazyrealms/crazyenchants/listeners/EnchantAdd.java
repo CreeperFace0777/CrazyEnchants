@@ -42,7 +42,7 @@ public class EnchantAdd implements Listener {
                             if (e.getCurrentItem().getType() == m) {
                                 //If the item can be enchanted with the enchant the player just clicked it with
                                 List<String> lore = e.getCurrentItem().getItemMeta().getLore();
-                                if (e.getCurrentItem().getItemMeta().getLore() != null) {
+                                if (e.getCurrentItem().getItemMeta().getLore() != null || !player.isOp()) {
                                     boolean permFinding = true;
                                     int current = 0;
                                     //Find how many enchants can be on one item for that player;
@@ -85,13 +85,13 @@ public class EnchantAdd implements Listener {
                                     e.setCurrentItem( CraftItemStack.asCraftMirror(nmsStack));
                                     e.getWhoClicked().getInventory().remove(item);
                                     e.getWhoClicked().playEffect(EntityEffect.VILLAGER_HAPPY);
-                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.ARROW_HIT, 1, 1);
+                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Added the enchant to the item");
                                     return;
                                 } else if(enchBook.getDestroy() == 100 || enchBook.getDestroy() >= new Random().nextInt(100)) {
                                     e.getWhoClicked().getInventory().remove(e.getCurrentItem());
                                     e.getWhoClicked().getInventory().remove(item);
-                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.ARROW_HIT, 1, 1);
+                                    ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.VILLAGER_DEATH, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
                                 } else {
                                     e.getWhoClicked().getInventory().remove(item);

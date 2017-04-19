@@ -16,6 +16,6 @@ public class AntiLava extends Enchant {
 	
 	@Override
 	public void alwaysActive(Player player) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 6, 0), true);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 60, 0), true);
 	}
 }
