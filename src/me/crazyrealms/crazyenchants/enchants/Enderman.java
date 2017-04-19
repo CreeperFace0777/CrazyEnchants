@@ -14,7 +14,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Enderman extends Enchant {
 
 	public Enderman() { 
-		super("Enderman", 3, Rarity.EPIC, new ItemSet[]{ItemSet.BOOTS}, "Chance to teleport behind your enemy", 1, 1, false);
+		super("Enderman", 3, Rarity.EPIC, new ItemSet[]{ItemSet.BOOTS}, "Chance to teleport behind your enemy", 100, 1, false);
 	}
 	
 	@Override

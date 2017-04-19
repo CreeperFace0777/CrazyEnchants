@@ -15,7 +15,7 @@ public class Humble extends Enchant {
 	private static ArrayList<HumbleZombie> zombies = new ArrayList<HumbleZombie>(); //Stores all zombies that are Humble
 	
 	public Humble() {
-		super("Humble", 5, Rarity.RARE, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to spawn a zombie horde that will target the player you hit", 3, 3, true, false);
+		super("Humble", 5, Rarity.RARE, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to spawn a zombie horde that will target the player you hit", 100, 3, true, false);
 	}
 	
 	@Override

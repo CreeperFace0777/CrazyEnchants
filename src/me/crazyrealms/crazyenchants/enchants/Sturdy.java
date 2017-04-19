@@ -12,7 +12,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Sturdy extends Enchant {
 
 	public Sturdy() {
-		super("Sturdy", 3, Rarity.EPIC, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Gives your armor more durability", 20, 20);
+		super("Sturdy", 3, Rarity.EPIC, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Gives your armor more durability", 100, 20);
 	}
 	
 	@Override

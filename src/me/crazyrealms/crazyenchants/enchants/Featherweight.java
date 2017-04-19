@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Featherweight extends Enchant {
     public Featherweight() {
-        super("Featherweight", 3, Rarity.COMMON, new ItemSet[]{ItemSet.SWORD}, "A chance to give the player a burst of haste", 7, 5, false);
+        super("Featherweight", 3, Rarity.COMMON, new ItemSet[]{ItemSet.SWORD}, "A chance to give the player a burst of haste", 100, 5, false);
     }
 
     @Override

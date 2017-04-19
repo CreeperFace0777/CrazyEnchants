@@ -12,7 +12,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Confusion extends Enchant {
 
 	public Confusion() {
-		super("Confusion", 3, Rarity.SIMPLE, new ItemSet[]{ItemSet.SWORD, ItemSet.AXE}, "Chance to give your enemy the nausea effect", 10, 5, false, false);
+		super("Confusion", 3, Rarity.SIMPLE, new ItemSet[]{ItemSet.SWORD, ItemSet.AXE}, "Chance to give your enemy the nausea effect", 100, 5, false, false);
 	}
 	
 	@Override

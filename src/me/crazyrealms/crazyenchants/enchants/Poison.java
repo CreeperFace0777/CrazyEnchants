@@ -13,7 +13,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Poison extends Enchant {
 
 	public Poison() {
-		super("Poison", 3, Rarity.RARE, new ItemSet[]{ItemSet.SWORD}, "Chance to give the enemy the poison effect", 5, 5);
+		super("Poison", 3, Rarity.RARE, new ItemSet[]{ItemSet.SWORD}, "Chance to give the enemy the poison effect", 100, 5);
 	}
 	
 	@Override

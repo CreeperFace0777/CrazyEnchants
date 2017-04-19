@@ -21,7 +21,7 @@ public class Freeze extends Enchant implements Listener {
 	private static ArrayList<UUID> frozenPlayers = new ArrayList<UUID>(); //List of frozen players
 	
 	public Freeze() {
-		super("Freeze", 3, Rarity.RARE, new ItemSet[]{ItemSet.SWORD}, "Chance to make the enemy not able to move", 3, 3);
+		super("Freeze", 3, Rarity.RARE, new ItemSet[]{ItemSet.SWORD}, "Chance to make the enemy not able to move", 100, 3);
 	}
 	
 	@Override

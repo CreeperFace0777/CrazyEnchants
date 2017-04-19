@@ -8,7 +8,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Strength extends Enchant {
 
 	public Strength() {
-		super("Strength", 3, Rarity.LEGENDARY, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to do more damage", 3, 3, false, true);
+		super("Strength", 3, Rarity.LEGENDARY, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to do more damage", 100, 3, false, true);
 	}
 	
 	@Override

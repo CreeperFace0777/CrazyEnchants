@@ -10,7 +10,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class LifeSaver extends Enchant {
 
 	public LifeSaver() {
-		super("Life Saver", 5, Rarity.LEGENDARY, new ItemSet[]{ItemSet.SWORD}, "Chance to give your enemies' health to you", 1, 1);
+		super("Life Saver", 5, Rarity.LEGENDARY, new ItemSet[]{ItemSet.SWORD}, "Chance to give your enemies' health to you", 100, 1);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Overworld extends Enchant {
 
 	public Overworld() {
-		super("Overworld", 3, Rarity.COMMON, new ItemSet[]{ItemSet.BOOTS}, "Chance to give the regeneration effect when at low health", 25, 10, false, false);
+		super("Overworld", 3, Rarity.COMMON, new ItemSet[]{ItemSet.BOOTS}, "Chance to give the regeneration effect when at low health", 100, 10, false, false);
 	}
 	
 	@Override

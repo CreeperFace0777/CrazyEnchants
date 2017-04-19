@@ -12,7 +12,7 @@ import me.crazyrealms.crazyenchants.enums.Rarity;
 public class Blind extends Enchant {
 
 	public Blind() {
-		super("Blind", 3, Rarity.RARE, new ItemSet[]{ItemSet.BOW, ItemSet.SWORD}, "Chance to give the enemy blindness", 5, 5, false, false);
+		super("Blind", 3, Rarity.RARE, new ItemSet[]{ItemSet.BOW, ItemSet.SWORD}, "Chance to give the enemy blindness", 100, 5, false, false);
 	}
 	
 	@Override
