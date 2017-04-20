@@ -51,7 +51,7 @@ public class EnchantBook {
             lore.add(ChatColor.GRAY + Utils.camelCase(items).replaceAll("_", " ") + " Enchantment");
         } else {
             //Turn the enum from all caps to first letter capital
-            lore.add(ChatColor.GRAY + Utils.camelCase(enchant.getItemSet()[0].toString()).replaceAll("_", " ") + "s Enchantment");
+            lore.add(ChatColor.GRAY + Utils.camelCase(enchant.getItemSet()[0].toString()) + "s Enchantment");
         }
 
         lore.add(ChatColor.DARK_AQUA + "Max Level: " + ChatColor.YELLOW + enchant.getMaxLevel());

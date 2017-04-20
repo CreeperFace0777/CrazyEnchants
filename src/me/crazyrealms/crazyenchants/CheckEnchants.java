@@ -13,6 +13,7 @@ public class CheckEnchants implements Runnable {
                 //The players armor/item contains an enchant
                 for(Enchant ench : Enchant.getEnchantsOnPlayer(p).keySet()) {
                     if(ench.isActive()) {
+
                         ench.alwaysActive(p);
                     }
                 }

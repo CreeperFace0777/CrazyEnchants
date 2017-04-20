@@ -32,17 +32,21 @@ public class EnchantAdd implements Listener {
         if (e.getClickedInventory().equals(player.getInventory())) {
             //We know that the inventory is the players
             if (hasClicked.get(player) != null && hasClicked.get(player) == true) {
+                debug(player);
                 hasClicked.replace(player, false);
                 final ItemStack item = oldItem.get(player);
                 oldItem.remove(player);
+                if(item == null) return;
                 Enchant enchant = Enchant.getEnchantByName(ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[0]));
                 if (enchant != null) {
+                    debug(player);
                     for (ItemSet i : enchant.getItemSet())
                         for (Material m : i.getItems())
                             if (e.getCurrentItem().getType() == m) {
                                 //If the item can be enchanted with the enchant the player just clicked it with
                                 List<String> lore = e.getCurrentItem().getItemMeta().getLore();
-                                if (e.getCurrentItem().getItemMeta().getLore() != null || !player.isOp()) {
+                                if (e.getCurrentItem().getItemMeta().getLore() != null && !player.isOp()) {
+                                    debug(player);
                                     boolean permFinding = true;
                                     int current = 0;
                                     //Find how many enchants can be on one item for that player;
@@ -61,15 +65,23 @@ public class EnchantAdd implements Listener {
                                     }
 
 
-                                } else lore = new ArrayList<>();
+                                }
                                 EnchantBook enchBook = EnchantBook.getEnchantBook(item);
+                                debug(player);
                                 //Add the enchant to item if the success is done.
                                 if(enchBook.getSuccess() == 100 || enchBook.getSuccess() >= new Random().nextInt(100)) {
+                                    debug(player);
                                     List<String> lorea;
-                                    if (e.getCurrentItem().getItemMeta().hasLore()) lorea = e.getCurrentItem().getItemMeta().getLore();
+                                    if (e.getCurrentItem().getItemMeta().hasLore())
+                                        lorea = e.getCurrentItem().getItemMeta().getLore();
+
+
                                     else lorea = new ArrayList<>();
+
+                                    player.sendMessage(enchBook.getEnchant().getRarity().getRarityColor() + enchBook.getEnchant().getName() + " " + Utils.intToRomanNumeral(enchBook.getLevel()));
                                     lorea.add(enchBook.getEnchant().getRarity().getRarityColor() + enchBook.getEnchant().getName() + " " + Utils.intToRomanNumeral(enchBook.getLevel()));
                                     ItemMeta meta = e.getCurrentItem().getItemMeta();
+                                    for(String s : lorea) player.sendMessage(s);
                                     meta.setLore(lorea);
                                     e.getCurrentItem().setItemMeta(meta);
                                     net.minecraft.server.v1_8_R3.ItemStack nmsStack = CraftItemStack.asNMSCopy(e.getCurrentItem());
@@ -93,8 +105,11 @@ public class EnchantAdd implements Listener {
                                     e.getWhoClicked().getInventory().remove(item);
                                     ((Player) e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.VILLAGER_DEATH, 1, 1);
                                     e.getWhoClicked().sendMessage(CrazyEnchants.getPrefix() + "Your item was destroyed");
+                                    return;
                                 } else {
                                     e.getWhoClicked().getInventory().remove(item);
+                                    player.sendMessage(CrazyEnchants.getPrefix() + "The enchant wasn't successful.");
+                                    return;
                                 }
                             }
 
@@ -196,5 +211,9 @@ public class EnchantAdd implements Listener {
 //
 //        }
 //    }
-
+    int num = 1;
+    private void debug(Player p) {
+        p.sendMessage("" + num);
+        num++;
+    }
 }

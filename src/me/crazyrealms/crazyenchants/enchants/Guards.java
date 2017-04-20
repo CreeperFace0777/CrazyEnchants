@@ -19,7 +19,7 @@ public class Guards extends Enchant {
 	private static ArrayList<GuardGolem> golems = new ArrayList<GuardGolem>(); //Stores all spawned iron golems
 	
 	public Guards() {
-		super("Guards", 10, Rarity.EPIC, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to spawn multiple iron golems that will attack enemies around the player", 100, 1);
+		super("Guards", 10, Rarity.EPIC, new ItemSet[]{ItemSet.ALL_ARMOUR}, "Chance to spawn multiple iron golems that will attack enemies around the player", 100, 1, true);
 
 	}
 	
