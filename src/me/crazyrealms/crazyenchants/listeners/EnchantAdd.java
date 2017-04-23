@@ -42,7 +42,7 @@ public class EnchantAdd implements Listener {
                             if (e.getCurrentItem().getType() == m) {
                                 //If the item can be enchanted with the enchant the player just clicked it with
                                 List<String> lore = e.getCurrentItem().getItemMeta().getLore();
-                                if (e.getCurrentItem().getItemMeta().getLore() != null) {
+                                if (e.getCurrentItem().getItemMeta().getLore() != null && !player.isOp()) {
                                     boolean permFinding = true;
                                     int current = 0;
                                     //Find how many enchants can be on one item for that player;
